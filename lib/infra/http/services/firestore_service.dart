@@ -136,45 +136,53 @@ class FirestoreService {
     List<Map<String, dynamic>> data = [];
     Query<Map<String, dynamic>> query = _db.collection(collection);
     for (var filter in filters) {
-      query = query.where(
-        filter.key,
-        isEqualTo: filter.operator == Operator.isEqualTo ? filter.value : null,
-        isNotEqualTo:
-            filter.operator == Operator.isNotEqualTo ? filter.value : null,
-        isLessThan:
-            filter.operator == Operator.isLessThan ? filter.value : null,
-        isLessThanOrEqualTo: filter.operator == Operator.isLessThanOrEqualTo
-            ? filter.value
-            : null,
-        isGreaterThan:
-            filter.operator == Operator.isGreaterThan ? filter.value : null,
-        isGreaterThanOrEqualTo:
-            filter.operator == Operator.isGreaterThanOrEqualTo
-                ? filter.value
-                : null,
-        arrayContains:
-            filter.operator == Operator.arrayContains ? filter.value : null,
-        whereIn: filter.operator == Operator.whereIn ? filter.values : null,
-        whereNotIn:
-            filter.operator == Operator.whereNotIn ? filter.values : null,
-        arrayContainsAny:
-            filter.operator == Operator.arrayContainsAny ? filter.values : null,
-        isNull:
-            filter.operator == Operator.isNull ? filter.value == null : null,
-      );
+      switch (filter.operator) {
+        case Operator.isEqualTo:
+          query = query.where(filter.key, isEqualTo: filter.value);
+          break;
+        case Operator.isNotEqualTo:
+          query = query.where(filter.key, isNotEqualTo: filter.value);
+          break;
+        case Operator.isLessThan:
+          query = query.where(filter.key, isLessThan: filter.value);
+          break;
+        case Operator.isLessThanOrEqualTo:
+          query = query.where(filter.key, isLessThanOrEqualTo: filter.value);
+          break;
+        case Operator.isGreaterThan:
+          query = query.where(filter.key, isGreaterThan: filter.value);
+          break;
+        case Operator.isGreaterThanOrEqualTo:
+          query = query.where(filter.key, isGreaterThanOrEqualTo: filter.value);
+          break;
+        case Operator.arrayContains:
+          query = query.where(filter.key, arrayContains: filter.value);
+          break;
+        case Operator.whereIn:
+          query = query.where(filter.key, whereIn: filter.values);
+          break;
+        case Operator.whereNotIn:
+          query = query.where(filter.key, whereNotIn: filter.values);
+          break;
+        case Operator.arrayContainsAny:
+          query = query.where(filter.key, arrayContainsAny: filter.values);
+          break;
+        case Operator.isNull:
+          query = query.where(filter.key, isNull: filter.value == null);
+          break;
+      }
     }
     if (orderBy != null) {
       for (var order in orderBy) {
         query = query.orderBy(order);
       }
     }
-    await query.get().then((value) {
-      for (var element in value.docs) {
-        if (element.exists) {
-          data.add(element.data());
-        }
+    final result = await query.get();
+    for (var element in result.docs) {
+      if (element.exists) {
+        data.add(element.data());
       }
-    });
+    }
     return data;
   }
 
@@ -189,32 +197,41 @@ class FirestoreService {
     Query<Map<String, dynamic>> query =
         _db.collection(collectionOrigin).doc(id).collection(collectionDestiny);
     for (var filter in filters) {
-      query = query.where(
-        filter.key,
-        isEqualTo: filter.operator == Operator.isEqualTo ? filter.value : null,
-        isNotEqualTo:
-            filter.operator == Operator.isNotEqualTo ? filter.value : null,
-        isLessThan:
-            filter.operator == Operator.isLessThan ? filter.value : null,
-        isLessThanOrEqualTo: filter.operator == Operator.isLessThanOrEqualTo
-            ? filter.value
-            : null,
-        isGreaterThan:
-            filter.operator == Operator.isGreaterThan ? filter.value : null,
-        isGreaterThanOrEqualTo:
-            filter.operator == Operator.isGreaterThanOrEqualTo
-                ? filter.value
-                : null,
-        arrayContains:
-            filter.operator == Operator.arrayContains ? filter.value : null,
-        whereIn: filter.operator == Operator.whereIn ? filter.values : null,
-        whereNotIn:
-            filter.operator == Operator.whereNotIn ? filter.values : null,
-        arrayContainsAny:
-            filter.operator == Operator.arrayContainsAny ? filter.values : null,
-        isNull:
-            filter.operator == Operator.isNull ? filter.value == null : null,
-      );
+      switch (filter.operator) {
+        case Operator.isEqualTo:
+          query = query.where(filter.key, isEqualTo: filter.value);
+          break;
+        case Operator.isNotEqualTo:
+          query = query.where(filter.key, isNotEqualTo: filter.value);
+          break;
+        case Operator.isLessThan:
+          query = query.where(filter.key, isLessThan: filter.value);
+          break;
+        case Operator.isLessThanOrEqualTo:
+          query = query.where(filter.key, isLessThanOrEqualTo: filter.value);
+          break;
+        case Operator.isGreaterThan:
+          query = query.where(filter.key, isGreaterThan: filter.value);
+          break;
+        case Operator.isGreaterThanOrEqualTo:
+          query = query.where(filter.key, isGreaterThanOrEqualTo: filter.value);
+          break;
+        case Operator.arrayContains:
+          query = query.where(filter.key, arrayContains: filter.value);
+          break;
+        case Operator.whereIn:
+          query = query.where(filter.key, whereIn: filter.values);
+          break;
+        case Operator.whereNotIn:
+          query = query.where(filter.key, whereNotIn: filter.values);
+          break;
+        case Operator.arrayContainsAny:
+          query = query.where(filter.key, arrayContainsAny: filter.values);
+          break;
+        case Operator.isNull:
+          query = query.where(filter.key, isNull: filter.value == null);
+          break;
+      }
     }
     if (orderBy != null) {
       for (var order in orderBy) {

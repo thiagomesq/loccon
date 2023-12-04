@@ -27,10 +27,10 @@ class LCFutureExecutor<T> extends StatefulWidget {
     this.confirmDialogContent,
     this.confirmationText,
     this.cancelText,
-    Key? key,
+    super.key,
     this.isOverlay = false,
     this.confirmDialogTitle,
-  }) : super(key: key);
+  });
 
   @override
   State<LCFutureExecutor> createState() => _LCFutureExecutorState();
@@ -110,10 +110,12 @@ class _LCFutureExecutorState extends State<LCFutureExecutor> {
       }
       var future = widget.futureBuilder(context);
 
-      var res = await future;
+      final res = await future;
 
       if (mounted) {
-        widget.onOk?.call(context, res);
+        if (widget.onOk != null) {
+          widget.onOk!(context, res);
+        }
         setState(() {
           loading = false;
           if (overlay.mounted) {

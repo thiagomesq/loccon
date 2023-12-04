@@ -40,6 +40,8 @@ dependencies:
   sticky_headers: ^0.3.0+2
   syncfusion_flutter_pdf: ^23.1.42
   syncfusion_flutter_pdfviewer: ^23.1.42
+  firebase_storage: ^11.5.3
+  http: ^1.1.0
   
 dev_dependencies:
   flutter_test:

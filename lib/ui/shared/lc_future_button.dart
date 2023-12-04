@@ -19,7 +19,7 @@ class LCFutureButton<T> extends StatelessWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   const LCFutureButton({
-    Key? key,
+    super.key,
     required this.futureBuilder,
     required this.child,
     this.icon,
@@ -35,7 +35,7 @@ class LCFutureButton<T> extends StatelessWidget {
     this.cancelText,
     this.backgroundColor,
     this.foregroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

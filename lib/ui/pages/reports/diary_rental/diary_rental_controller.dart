@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:intl/intl.dart';
 import 'package:loccon/core/enums/report_type.dart';
 import 'package:loccon/core/models/diary_rental_report.dart';
@@ -41,12 +43,21 @@ abstract class DiaryRentalControllerBase extends ControllerBase with Store {
   }
 
   @action
-  Future<List<int>> _diaryRentalReportPDF(List<DailyRentalReport> list) {
+  Future<List<int>> _diaryRentalReportPDF(List<DailyRentalReport> list) async {
+    var path =
+        '/storage/emulated/0/Download/daily_rental_report-$rentalDate.pdf';
+    var file = File(path);
+    file.writeAsBytesSync(await _pdfService.dailyRentalReport(list));
     return _pdfService.dailyRentalReport(list);
   }
 
   @action
-  Future<List<int>> _diaryRentalReportExcel(List<DailyRentalReport> list) {
+  Future<List<int>> _diaryRentalReportExcel(
+      List<DailyRentalReport> list) async {
+    var path =
+        '/storage/emulated/0/Download/daily_rental_report-$rentalDate.pdf';
+    var file = File(path);
+    file.writeAsBytesSync(await _pdfService.dailyRentalReport(list));
     return _pdfService.dailyRentalReport(list);
   }
 }

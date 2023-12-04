@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loccon/core/enums/report_type.dart';
 import 'package:loccon/ui/pages/reports/diary_rental/diary_rental_controller.dart';
+import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
 import 'package:loccon/ui/shared/lc_text_field.dart';
@@ -72,30 +73,36 @@ class DiaryRentalReportPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
-                          child: LCFutureButton(
+                          child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
                                 controller.diaryRentalReport(ReportType.pdf),
-                            onOk: (_, __) {
-                              Navigator.of(context).pop();
+                            onOk: (_, bytes) {
+                              Navigator.of(context).pushNamed(
+                                PdfViewerPage.routeName,
+                                arguments: bytes,
+                              );
                             },
                             backgroundColor: const Color(0XFF9E0000),
                             foregroundColor: Colors.white,
                             child: const Text('PDF'),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        /*const SizedBox(width: 10),
                         Expanded(
-                          child: LCFutureButton(
+                          child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
                                 controller.diaryRentalReport(ReportType.excel),
-                            onOk: (_, __) {
-                              Navigator.of(context).pop();
+                            onOk: (_, bytes) {
+                              Navigator.of(context).pushNamed(
+                                PdfViewerPage.routeName,
+                                arguments: bytes,
+                              );
                             },
                             backgroundColor: const Color(0XFF1D6F42),
                             foregroundColor: Colors.white,
                             child: const Text('Excel'),
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ],
