@@ -107,4 +107,32 @@ class RentalService {
     }
     return dailyRentalReport;
   }
+
+  Future<List<DailyRentalReport>> getDailyRetrievalReport(
+    String date,
+  ) async {
+    final list = await _firestoreService.getDataByFilters(
+      collection,
+      [
+        Filtro(
+          key: 'retrievalDate',
+          operator: Operator.isEqualTo,
+          value: date,
+        ),
+      ],
+    );
+    List<DailyRentalReport> dailyRentalReport = [];
+    for (var e in list) {
+      final client = Client.fromJson(
+          (await _firestoreService.getDataById('clients', e['client'])));
+      final dumpster = Dumpster.fromJson(
+          (await _firestoreService.getDataById('dumpsters', e['dumpster'])));
+      dailyRentalReport.add(DailyRentalReport(
+        rental: Rental.fromJson(e),
+        client: client,
+        dumpster: dumpster,
+      ));
+    }
+    return dailyRentalReport;
+  }
 }

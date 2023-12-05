@@ -35,29 +35,24 @@ mixin _$DiaryRentalController on DiaryRentalControllerBase, Store {
         .run(() => super.diaryRentalReport(reportType));
   }
 
-  late final _$DiaryRentalControllerBaseActionController =
-      ActionController(name: 'DiaryRentalControllerBase', context: context);
+  late final _$_diaryRentalReportPDFAsyncAction = AsyncAction(
+      'DiaryRentalControllerBase._diaryRentalReportPDF',
+      context: context);
 
   @override
   Future<List<int>> _diaryRentalReportPDF(List<DailyRentalReport> list) {
-    final _$actionInfo = _$DiaryRentalControllerBaseActionController
-        .startAction(name: 'DiaryRentalControllerBase._diaryRentalReportPDF');
-    try {
-      return super._diaryRentalReportPDF(list);
-    } finally {
-      _$DiaryRentalControllerBaseActionController.endAction(_$actionInfo);
-    }
+    return _$_diaryRentalReportPDFAsyncAction
+        .run(() => super._diaryRentalReportPDF(list));
   }
+
+  late final _$_diaryRentalReportExcelAsyncAction = AsyncAction(
+      'DiaryRentalControllerBase._diaryRentalReportExcel',
+      context: context);
 
   @override
   Future<List<int>> _diaryRentalReportExcel(List<DailyRentalReport> list) {
-    final _$actionInfo = _$DiaryRentalControllerBaseActionController
-        .startAction(name: 'DiaryRentalControllerBase._diaryRentalReportExcel');
-    try {
-      return super._diaryRentalReportExcel(list);
-    } finally {
-      _$DiaryRentalControllerBaseActionController.endAction(_$actionInfo);
-    }
+    return _$_diaryRentalReportExcelAsyncAction
+        .run(() => super._diaryRentalReportExcel(list));
   }
 
   @override

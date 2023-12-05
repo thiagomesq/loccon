@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loccon/ui/pages/reports/diary_rental/diary_rental_page.dart';
+import 'package:loccon/ui/pages/reports/diary_retrieval/diary_retrieval_page.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({super.key});
@@ -32,7 +33,7 @@ class ReportsPage extends StatelessWidget {
                   text: 'Diary rental Report',
                 ),
                 ReportButton(
-                  route: '',
+                  route: DiaryRetrievalReportPage.routeName,
                   text: 'Diary retrieval Report',
                 ),
               ],
