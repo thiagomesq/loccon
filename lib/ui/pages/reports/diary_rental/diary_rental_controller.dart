@@ -56,7 +56,7 @@ abstract class DiaryRentalControllerBase extends ControllerBase with Store {
   Future<List<int>> _diaryRentalReportExcel(
       List<DailyRentalReport> list) async {
     var path =
-        '/storage/emulated/0/Download/daily_rental_report-$rentalDate.pdf';
+        '/storage/emulated/0/Download/daily_rental_report-$rentalDate.xlsx';
     var file = File(path);
     final bytes = await _pdfService.dailyRentalReport(list);
     file.writeAsBytesSync(bytes);

@@ -5,6 +5,7 @@ import 'package:loccon/ui/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:loccon/ui/pages/rental/add_edit/add_edit_page.dart';
 import 'package:loccon/ui/pages/rental/part/dumpster_rental_info_page.dart';
+import 'package:loccon/ui/pages/reports/client/client_page.dart';
 import 'package:loccon/ui/pages/reports/diary_rental/diary_rental_page.dart';
 import 'package:loccon/ui/pages/reports/diary_retrieval/diary_retrieval_page.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
@@ -22,5 +23,6 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   AddEditRentalPage.routeName: (_) => const AddEditRentalPage(),
   DiaryRentalReportPage.routeName: (_) => const DiaryRentalReportPage(),
   DiaryRetrievalReportPage.routeName: (_) => const DiaryRetrievalReportPage(),
+  ClientReportPage.routeName: (_) => const ClientReportPage(),
   PdfViewerPage.routeName: (_) => const PdfViewerPage(),
 };

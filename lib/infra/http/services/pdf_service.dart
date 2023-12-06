@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:loccon/core/models/client.dart';
 
 import 'package:loccon/core/models/diary_rental_report.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -192,6 +193,97 @@ class PDFService {
       );
     }
 
+    List<int> bytes = await document.save();
+    document.dispose();
+    return bytes;
+  }
+
+  //clientReport
+  Future<List<int>> clientReport(List<Client> list) async {
+    final PdfDocument document = PdfDocument();
+
+    document.pageSettings.orientation = PdfPageOrientation.landscape;
+
+    final PdfPageTemplateElement headerTemplate =
+        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 56.70));
+
+    final storageRef = FirebaseStorage.instance.ref();
+
+    var response = await get(Uri.parse(
+        await storageRef.child('images/escrita.png').getDownloadURL()));
+    var data = response.bodyBytes;
+
+    PdfBitmap image = PdfBitmap(data);
+
+    headerTemplate.graphics.drawImage(
+      image,
+      const Rect.fromLTWH(0, 0, 200, 56.70),
+    );
+
+    document.template.top = headerTemplate;
+
+    const titlePosition = Rect.fromLTWH(0, 20, 515, 35);
+    final titleTotalHeight = titlePosition.height + titlePosition.top;
+
+    PdfPage page = document.pages.add();
+    page.graphics.drawString(
+      'Client Report',
+      PdfStandardFont(PdfFontFamily.helvetica, 30),
+      bounds: titlePosition,
+      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      format: PdfStringFormat(alignment: PdfTextAlignment.center),
+    );
+
+    if (list.isNotEmpty) {
+      PdfGrid grid = PdfGrid();
+
+      grid.style = PdfGridStyle(
+        font: PdfStandardFont(PdfFontFamily.helvetica, 12),
+        cellPadding: PdfPaddings(left: 5, right: 5, top: 5, bottom: 5),
+      );
+
+      grid.columns.add(count: 4);
+
+      grid.headers.add(1);
+
+      final headerFontStyle = PdfStandardFont(PdfFontFamily.helvetica, 12,
+          style: PdfFontStyle.bold);
+
+      PdfGridRow header = grid.headers[0];
+      header.cells[0].value = 'Name/Company';
+      header.cells[0].style.font = headerFontStyle;
+      header.cells[1].value = 'Email';
+      header.cells[1].style.font = headerFontStyle;
+      header.cells[2].value = 'Phone';
+      header.cells[2].style.font = headerFontStyle;
+      header.cells[3].value = 'Contact';
+      header.cells[3].style.font = headerFontStyle;
+
+      for (var item in list) {
+        PdfGridRow row = grid.rows.add();
+        row.cells[0].value = item.name ?? item.company;
+        row.cells[1].value = item.email ?? '';
+        row.cells[2].value = item.phone;
+        row.cells[3].value = item.contact ?? '';
+      }
+
+      grid.columns[1].width = 170;
+      grid.columns[2].width = 96;
+      grid.columns[3].width = 96;
+
+      grid.draw(
+        page: page,
+        bounds: Rect.fromLTWH(0, titleTotalHeight + 35, 0, 0),
+      );
+    } else {
+      page.graphics.drawString(
+        'No data found',
+        PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
+        bounds: Rect.fromLTWH(0, titleTotalHeight + 30, 515, 30),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    }
     List<int> bytes = await document.save();
     document.dispose();
     return bytes;

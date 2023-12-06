@@ -101,23 +101,13 @@ class AddEditClientPage extends StatelessWidget {
                                       )
                                     : const SizedBox.shrink(),
                             const SizedBox(height: 16),
-                            controller.type == ClientType.company
-                                ? LCTextField(
-                                    labelText: 'USDOT',
-                                    keyboardType: TextInputType.number,
-                                    initialValue: controller.usdot,
-                                    onChanged: (value) =>
-                                        controller.usdot = value,
-                                  )
-                                : controller.type == ClientType.person
-                                    ? LCTextField(
-                                        labelText: 'SSN',
-                                        keyboardType: TextInputType.number,
-                                        initialValue: controller.ssn,
-                                        onChanged: (value) =>
-                                            controller.ssn = value,
-                                      )
-                                    : const SizedBox.shrink(),
+                            LCTextField(
+                              labelText: 'Email',
+                              keyboardType: TextInputType.emailAddress,
+                              initialValue: controller.email,
+                              onChanged: (value) =>
+                                  controller.email = phoneMask.getMaskedText(),
+                            ),
                             const SizedBox(height: 16),
                             LCTextField(
                               labelText: 'Phone',

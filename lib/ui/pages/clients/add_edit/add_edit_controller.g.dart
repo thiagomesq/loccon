@@ -81,35 +81,19 @@ mixin _$AddEditClientsController on AddEditClientsControllerBase, Store {
     });
   }
 
-  late final _$usdotAtom =
-      Atom(name: 'AddEditClientsControllerBase.usdot', context: context);
+  late final _$emailAtom =
+      Atom(name: 'AddEditClientsControllerBase.email', context: context);
 
   @override
-  String? get usdot {
-    _$usdotAtom.reportRead();
-    return super.usdot;
+  String? get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set usdot(String? value) {
-    _$usdotAtom.reportWrite(value, super.usdot, () {
-      super.usdot = value;
-    });
-  }
-
-  late final _$ssnAtom =
-      Atom(name: 'AddEditClientsControllerBase.ssn', context: context);
-
-  @override
-  String? get ssn {
-    _$ssnAtom.reportRead();
-    return super.ssn;
-  }
-
-  @override
-  set ssn(String? value) {
-    _$ssnAtom.reportWrite(value, super.ssn, () {
-      super.ssn = value;
+  set email(String? value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -174,8 +158,7 @@ client: ${client},
 type: ${type},
 company: ${company},
 name: ${name},
-usdot: ${usdot},
-ssn: ${ssn},
+email: ${email},
 phone: ${phone},
 contact: ${contact},
 isFormValid: ${isFormValid}

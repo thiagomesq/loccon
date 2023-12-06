@@ -8,16 +8,14 @@ class Client {
   String? id;
   String? company;
   String? name;
-  String? usdot;
-  String? ssn;
+  String? email;
   String? phone;
   String? contact;
 
   Client({
     this.company,
     this.name,
-    this.usdot,
-    this.ssn,
+    this.email,
     this.phone,
     this.contact,
   }) : id = const Uuid().v4();

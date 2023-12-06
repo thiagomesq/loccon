@@ -31,10 +31,7 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
   String? name;
 
   @observable
-  String? usdot;
-
-  @observable
-  String? ssn;
+  String? email;
 
   @observable
   String? phone;
@@ -47,15 +44,15 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
     if (type == ClientType.company) {
       return company != null &&
           company!.isNotEmpty &&
-          usdot != null &&
-          usdot!.isNotEmpty &&
+          email != null &&
+          email!.isNotEmpty &&
           phone != null &&
           phone!.isNotEmpty;
     } else {
       return name != null &&
           name!.isNotEmpty &&
-          ssn != null &&
-          ssn!.isNotEmpty &&
+          email != null &&
+          email!.isNotEmpty &&
           phone != null &&
           phone!.isNotEmpty;
     }
@@ -67,13 +64,12 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
     if (client != null) {
       if (client!.company != null) {
         company = client!.company;
-        usdot = client!.usdot;
         type = ClientType.company;
       } else {
         type = ClientType.person;
         name = client!.name;
-        ssn = client!.ssn;
       }
+      email = client!.email;
       phone = client!.phone;
       contact = client!.contact;
     }
@@ -85,14 +81,14 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
       if (type == ClientType.company) {
         client = Client(
           company: company,
-          usdot: usdot,
+          email: email,
           phone: phone,
           contact: contact,
         );
       } else {
         client = Client(
           name: name,
-          ssn: ssn,
+          email: email,
           phone: phone,
           contact: contact,
         );
