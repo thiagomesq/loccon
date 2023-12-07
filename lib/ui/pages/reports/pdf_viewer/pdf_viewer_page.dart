@@ -16,9 +16,6 @@ class PdfViewerPage extends StatelessWidget {
         SystemChrome.setPreferredOrientations(
             [DeviceOrientation.landscapeLeft]);
         break;
-      case 'portrait':
-        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-        break;
       default:
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }

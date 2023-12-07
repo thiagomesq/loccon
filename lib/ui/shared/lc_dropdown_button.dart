@@ -4,7 +4,7 @@ class LCDropdownButton extends StatelessWidget {
   final String? labelText;
   final List<DropdownMenuItem> items;
   final void Function(dynamic)? onChanged;
-  final dynamic? initialValue;
+  final dynamic initialValue;
   const LCDropdownButton({
     super.key,
     this.labelText,

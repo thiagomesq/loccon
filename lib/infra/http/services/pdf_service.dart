@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:http/http.dart' show get;
 
 class PDFService {
-  //dailyRentalReport
+  //rentalReport
   Future<List<int>> rentalReport(
     List<RentalReport> list, {
     String? initialDate,
@@ -132,8 +132,12 @@ class PDFService {
     return bytes;
   }
 
-  //dailyRetrievalReport
-  Future<List<int>> dailyRetrievalReport(List<RentalReport> list) async {
+  //retrievalReport
+  Future<List<int>> retrievalReport(
+    List<RentalReport> list, {
+    String? initialDate,
+    String? finalDate,
+  }) async {
     final PdfDocument document = PdfDocument();
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
@@ -160,15 +164,42 @@ class PDFService {
     final titleTotalHeight = titlePosition.height + titlePosition.top;
 
     PdfPage page = document.pages.add();
-    page.graphics.drawString(
-      'Daily Retrieval Report',
-      PdfStandardFont(PdfFontFamily.helvetica, 30),
-      bounds: titlePosition,
-      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      format: PdfStringFormat(alignment: PdfTextAlignment.center),
-    );
+    if (initialDate != null && finalDate != null) {
+      page.graphics.drawString(
+        'Retrieval Report',
+        PdfStandardFont(PdfFontFamily.helvetica, 30),
+        bounds: titlePosition,
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    } else {
+      page.graphics.drawString(
+        'Daily Retrieval Report',
+        PdfStandardFont(PdfFontFamily.helvetica, 30),
+        bounds: titlePosition,
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    }
 
     if (list.isNotEmpty) {
+      if (initialDate != null && finalDate != null) {
+        page.graphics.drawString(
+          'Period: $initialDate - $finalDate',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      } else {
+        page.graphics.drawString(
+          'Date: $initialDate',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      }
       page.graphics.drawString(
         'Date: ${list[0].rental.retrievalDate}',
         PdfStandardFont(PdfFontFamily.helvetica, 14, style: PdfFontStyle.bold),

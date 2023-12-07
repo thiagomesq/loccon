@@ -5,21 +5,21 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:loccon/core/enums/report_type.dart';
 import 'package:loccon/core/models/report_data.dart';
-import 'package:loccon/ui/pages/reports/rental/rental_controller.dart';
+import 'package:loccon/ui/pages/reports/retrieval/retrieval_controller.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
 import 'package:loccon/ui/shared/lc_dropdown_button.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
 import 'package:loccon/ui/shared/lc_text_field.dart';
 
-class RentalReportPage extends StatelessWidget {
-  static const routeName = '/reports/rental';
-  const RentalReportPage({super.key});
+class RetrievalReportPage extends StatelessWidget {
+  static const routeName = '/reports/retrieval';
+  const RetrievalReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ControllerScope(
-      create: (_) => RentalController(
+      create: (_) => DiaryRetrievalController(
         GetIt.I(),
         GetIt.I(),
         GetIt.I(),
@@ -54,7 +54,7 @@ class RentalReportPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Rental Report',
+                      'Retrieval Report',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 16),
@@ -82,11 +82,12 @@ class RentalReportPage extends StatelessWidget {
                                       return LCTextField(
                                         controller: TextEditingController(),
                                         initialValue:
-                                            controller.initialRentalDate,
-                                        labelText: 'Rental Date *',
+                                            controller.initialRetrievalDate,
+                                        labelText: 'Retrieval Date *',
                                         isDatePicker: true,
                                         onChanged: (value) {
-                                          controller.initialRentalDate = value;
+                                          controller.initialRetrievalDate =
+                                              value;
                                         },
                                       );
                                     },
@@ -100,12 +101,13 @@ class RentalReportPage extends StatelessWidget {
                                                 controller:
                                                     TextEditingController(),
                                                 initialValue: controller
-                                                    .initialRentalDate,
+                                                    .initialRetrievalDate,
                                                 labelText:
-                                                    'Initial Rental Date *',
+                                                    'Initial Retrieval Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller.initialRentalDate =
+                                                  controller
+                                                          .initialRetrievalDate =
                                                       value;
                                                   DateTime date =
                                                       DateFormat('MM-dd-yyyy')
@@ -129,7 +131,8 @@ class RentalReportPage extends StatelessWidget {
                                                     default:
                                                       break;
                                                   }
-                                                  controller.finalRentalDate =
+                                                  controller
+                                                          .finalRetrievalDate =
                                                       DateFormat('MM-dd-yyyy')
                                                           .format(date);
                                                 },
@@ -139,10 +142,10 @@ class RentalReportPage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           Observer(
                                             builder: (_) {
-                                              DateTime date =
-                                                  DateFormat('MM-dd-yyyy')
-                                                      .parse(controller
-                                                          .initialRentalDate);
+                                              DateTime date = DateFormat(
+                                                      'MM-dd-yyyy')
+                                                  .parse(controller
+                                                      .initialRetrievalDate);
                                               switch (controller.period) {
                                                 case 'Weekly':
                                                   date = date.add(
@@ -160,19 +163,20 @@ class RentalReportPage extends StatelessWidget {
                                                 default:
                                                   break;
                                               }
-                                              controller.finalRentalDate =
+                                              controller.finalRetrievalDate =
                                                   DateFormat('MM-dd-yyyy')
                                                       .format(date);
                                               return LCTextField(
                                                 controller:
                                                     TextEditingController(),
-                                                initialValue:
-                                                    controller.finalRentalDate,
+                                                initialValue: controller
+                                                    .finalRetrievalDate,
                                                 labelText:
-                                                    'Final Rental Date *',
+                                                    'Final Retrieval Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller.finalRentalDate =
+                                                  controller
+                                                          .finalRetrievalDate =
                                                       value;
                                                 },
                                                 isEnable: false,
@@ -189,12 +193,13 @@ class RentalReportPage extends StatelessWidget {
                                                 controller:
                                                     TextEditingController(),
                                                 initialValue: controller
-                                                    .initialRentalDate,
+                                                    .initialRetrievalDate,
                                                 labelText:
-                                                    'Initial Rental Date *',
+                                                    'Initial Retrieval Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller.initialRentalDate =
+                                                  controller
+                                                          .initialRetrievalDate =
                                                       value;
                                                 },
                                               );
@@ -203,25 +208,26 @@ class RentalReportPage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           Observer(
                                             builder: (_) {
-                                              DateTime date =
-                                                  DateFormat('MM-dd-yyyy')
-                                                      .parse(controller
-                                                          .initialRentalDate);
+                                              DateTime date = DateFormat(
+                                                      'MM-dd-yyyy')
+                                                  .parse(controller
+                                                      .initialRetrievalDate);
                                               date = date
                                                   .add(const Duration(days: 1));
-                                              controller.finalRentalDate =
+                                              controller.finalRetrievalDate =
                                                   DateFormat('MM-dd-yyyy')
                                                       .format(date);
                                               return LCTextField(
                                                 controller:
                                                     TextEditingController(),
-                                                initialValue:
-                                                    controller.finalRentalDate,
+                                                initialValue: controller
+                                                    .finalRetrievalDate,
                                                 labelText:
-                                                    'Final Rental Date *',
+                                                    'Final Retrieval Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller.finalRentalDate =
+                                                  controller
+                                                          .finalRetrievalDate =
                                                       value;
                                                 },
                                               );
@@ -240,7 +246,7 @@ class RentalReportPage extends StatelessWidget {
                         Expanded(
                           child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
-                                controller.rentalReport(ReportType.pdf),
+                                controller.retrievalReport(ReportType.pdf),
                             onOk: (_, bytes) async {
                               await Navigator.of(context).pushNamed(
                                 PdfViewerPage.routeName,
@@ -262,7 +268,7 @@ class RentalReportPage extends StatelessWidget {
                         Expanded(
                           child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
-                                controller.diaryRentalReport(ReportType.excel),
+                                controller.diaryRetrievalReport(ReportType.excel),
                             onOk: (_, bytes) {
                               Navigator.of(context).pushNamed(
                                 PdfViewerPage.routeName,
