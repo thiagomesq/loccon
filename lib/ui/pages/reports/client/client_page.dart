@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loccon/core/enums/report_type.dart';
+import 'package:loccon/core/models/report_data.dart';
 import 'package:loccon/ui/pages/reports/client/client_controller.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
@@ -62,11 +64,17 @@ class ClientReportPage extends StatelessWidget {
                           child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
                                 controller.clientReport(ReportType.pdf),
-                            onOk: (_, bytes) {
-                              Navigator.of(context).pushNamed(
+                            onOk: (_, bytes) async {
+                              await Navigator.of(context).pushNamed(
                                 PdfViewerPage.routeName,
-                                arguments: bytes,
+                                arguments: ReportData(
+                                  bytes: bytes,
+                                  screenOrientation: 'landscape',
+                                ),
                               );
+
+                              SystemChrome.setPreferredOrientations(
+                                  [DeviceOrientation.portraitUp]);
                             },
                             backgroundColor: const Color(0XFF9E0000),
                             foregroundColor: Colors.white,

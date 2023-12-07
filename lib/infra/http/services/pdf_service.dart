@@ -2,13 +2,17 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:loccon/core/models/client.dart';
 
-import 'package:loccon/core/models/diary_rental_report.dart';
+import 'package:loccon/core/models/rental_report.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:http/http.dart' show get;
 
 class PDFService {
   //dailyRentalReport
-  Future<List<int>> dailyRentalReport(List<DailyRentalReport> list) async {
+  Future<List<int>> rentalReport(
+    List<RentalReport> list, {
+    String? initialDate,
+    String? finalDate,
+  }) async {
     final PdfDocument document = PdfDocument();
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
@@ -35,21 +39,42 @@ class PDFService {
     final titleTotalHeight = titlePosition.height + titlePosition.top;
 
     PdfPage page = document.pages.add();
-    page.graphics.drawString(
-      'Daily Rental Report',
-      PdfStandardFont(PdfFontFamily.helvetica, 30),
-      bounds: titlePosition,
-      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      format: PdfStringFormat(alignment: PdfTextAlignment.center),
-    );
+    if (initialDate != null && finalDate != null) {
+      page.graphics.drawString(
+        'Rental Report',
+        PdfStandardFont(PdfFontFamily.helvetica, 30),
+        bounds: titlePosition,
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    } else {
+      page.graphics.drawString(
+        'Daily Rental Report',
+        PdfStandardFont(PdfFontFamily.helvetica, 30),
+        bounds: titlePosition,
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    }
 
     if (list.isNotEmpty) {
-      page.graphics.drawString(
-        'Date: ${list[0].rental.rentalDate}',
-        PdfStandardFont(PdfFontFamily.helvetica, 14, style: PdfFontStyle.bold),
-        bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      );
+      if (initialDate != null && finalDate != null) {
+        page.graphics.drawString(
+          'Period: $initialDate - $finalDate',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      } else {
+        page.graphics.drawString(
+          'Date: ${list[0].rental.rentalDate}',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      }
 
       PdfGrid grid = PdfGrid();
 
@@ -108,7 +133,7 @@ class PDFService {
   }
 
   //dailyRetrievalReport
-  Future<List<int>> dailyRetrievalReport(List<DailyRentalReport> list) async {
+  Future<List<int>> dailyRetrievalReport(List<RentalReport> list) async {
     final PdfDocument document = PdfDocument();
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;

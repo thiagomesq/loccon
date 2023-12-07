@@ -40,7 +40,7 @@ mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
       context: context);
 
   @override
-  Future<List<int>> _diaryRetrievalReportPDF(List<DailyRentalReport> list) {
+  Future<List<int>> _diaryRetrievalReportPDF(List<RentalReport> list) {
     return _$_diaryRetrievalReportPDFAsyncAction
         .run(() => super._diaryRetrievalReportPDF(list));
   }
@@ -50,7 +50,7 @@ mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
       context: context);
 
   @override
-  Future<List<int>> _diaryRetrievalReportExcel(List<DailyRentalReport> list) {
+  Future<List<int>> _diaryRetrievalReportExcel(List<RentalReport> list) {
     return _$_diaryRetrievalReportExcelAsyncAction
         .run(() => super._diaryRetrievalReportExcel(list));
   }

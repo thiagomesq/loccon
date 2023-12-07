@@ -1,6 +1,6 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:loccon/core/models/report_data.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerPage extends StatelessWidget {
@@ -9,7 +9,20 @@ class PdfViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> bytes = ModalRoute.of(context)!.settings.arguments as List<int>;
+    ReportData reportData =
+        ModalRoute.of(context)!.settings.arguments as ReportData;
+    switch (reportData.screenOrientation) {
+      case 'landscape':
+        SystemChrome.setPreferredOrientations(
+            [DeviceOrientation.landscapeLeft]);
+        break;
+      case 'portrait':
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+        break;
+      default:
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    }
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -20,7 +33,7 @@ class PdfViewerPage extends StatelessWidget {
           height: 40,
         ),
       ),
-      body: SfPdfViewer.memory(Uint8List.fromList(bytes)),
+      body: SfPdfViewer.memory(Uint8List.fromList(reportData.bytes)),
     );
   }
 }

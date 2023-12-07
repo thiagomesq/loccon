@@ -11,6 +11,7 @@ class LCTextField extends StatelessWidget {
   final bool? isDatePicker;
   final TextEditingController? controller;
   final DateTime? firstDate;
+  final bool? isEnable;
   const LCTextField({
     Key? key,
     this.keyboardType,
@@ -21,6 +22,7 @@ class LCTextField extends StatelessWidget {
     this.isDatePicker,
     this.controller,
     this.firstDate,
+    this.isEnable,
   }) : super(key: key);
 
   @override
@@ -60,6 +62,7 @@ class LCTextField extends StatelessWidget {
       ),
       onChanged: onChanged,
       readOnly: isDatePicker ?? false,
+      enabled: isEnable ?? true,
       onTap: isDatePicker != null && isDatePicker!
           ? () async {
               final date = await showDatePicker(

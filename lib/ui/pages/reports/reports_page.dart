@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loccon/ui/pages/reports/client/client_page.dart';
-import 'package:loccon/ui/pages/reports/diary_rental/diary_rental_page.dart';
+import 'package:loccon/ui/pages/reports/rental/rental_page.dart';
 import 'package:loccon/ui/pages/reports/diary_retrieval/diary_retrieval_page.dart';
 
 class ReportsPage extends StatelessWidget {
@@ -30,8 +30,8 @@ class ReportsPage extends StatelessWidget {
               crossAxisCount: 2,
               children: const [
                 ReportButton(
-                  route: DiaryRentalReportPage.routeName,
-                  text: 'Diary rental Report',
+                  route: RentalReportPage.routeName,
+                  text: 'Rental Report',
                 ),
                 ReportButton(
                   route: DiaryRetrievalReportPage.routeName,

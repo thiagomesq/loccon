@@ -1,6 +1,6 @@
 import 'package:loccon/core/enums/operator.dart';
 import 'package:loccon/core/models/client.dart';
-import 'package:loccon/core/models/diary_rental_report.dart';
+import 'package:loccon/core/models/rental_report.dart';
 import 'package:loccon/core/models/dumpster.dart';
 import 'package:loccon/core/models/filtro.dart';
 import 'package:loccon/core/models/rental.dart';
@@ -80,7 +80,7 @@ class RentalService {
     return await _firestoreService.deleteData(collection, id);
   }
 
-  Future<List<DailyRentalReport>> getDailyRentalReport(
+  Future<List<RentalReport>> getDailyRentalReport(
     String date,
   ) async {
     final list = await _firestoreService.getDataByFilters(
@@ -93,13 +93,13 @@ class RentalService {
         ),
       ],
     );
-    List<DailyRentalReport> dailyRentalReport = [];
+    List<RentalReport> dailyRentalReport = [];
     for (var e in list) {
       final client = Client.fromJson(
           (await _firestoreService.getDataById('clients', e['client'])));
       final dumpster = Dumpster.fromJson(
           (await _firestoreService.getDataById('dumpsters', e['dumpster'])));
-      dailyRentalReport.add(DailyRentalReport(
+      dailyRentalReport.add(RentalReport(
         rental: Rental.fromJson(e),
         client: client,
         dumpster: dumpster,
@@ -108,7 +108,41 @@ class RentalService {
     return dailyRentalReport;
   }
 
-  Future<List<DailyRentalReport>> getDailyRetrievalReport(
+  Future<List<RentalReport>> getRentalReport(
+    String initialDate,
+    String finalDate,
+  ) async {
+    final list = await _firestoreService.getDataByFilters(
+      collection,
+      [
+        Filtro(
+          key: 'rentalDate',
+          operator: Operator.isGreaterThanOrEqualTo,
+          value: initialDate,
+        ),
+        Filtro(
+          key: 'rentalDate',
+          operator: Operator.isLessThanOrEqualTo,
+          value: finalDate,
+        ),
+      ],
+    );
+    List<RentalReport> rentalReport = [];
+    for (var e in list) {
+      final client = Client.fromJson(
+          (await _firestoreService.getDataById('clients', e['client'])));
+      final dumpster = Dumpster.fromJson(
+          (await _firestoreService.getDataById('dumpsters', e['dumpster'])));
+      rentalReport.add(RentalReport(
+        rental: Rental.fromJson(e),
+        client: client,
+        dumpster: dumpster,
+      ));
+    }
+    return rentalReport;
+  }
+
+  Future<List<RentalReport>> getDailyRetrievalReport(
     String date,
   ) async {
     final list = await _firestoreService.getDataByFilters(
@@ -121,13 +155,13 @@ class RentalService {
         ),
       ],
     );
-    List<DailyRentalReport> dailyRentalReport = [];
+    List<RentalReport> dailyRentalReport = [];
     for (var e in list) {
       final client = Client.fromJson(
           (await _firestoreService.getDataById('clients', e['client'])));
       final dumpster = Dumpster.fromJson(
           (await _firestoreService.getDataById('dumpsters', e['dumpster'])));
-      dailyRentalReport.add(DailyRentalReport(
+      dailyRentalReport.add(RentalReport(
         rental: Rental.fromJson(e),
         client: client,
         dumpster: dumpster,
