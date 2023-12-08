@@ -200,12 +200,6 @@ class PDFService {
           brush: PdfSolidBrush(PdfColor(0, 0, 0)),
         );
       }
-      page.graphics.drawString(
-        'Date: ${list[0].rental.retrievalDate}',
-        PdfStandardFont(PdfFontFamily.helvetica, 14, style: PdfFontStyle.bold),
-        bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      );
 
       PdfGrid grid = PdfGrid();
 
@@ -255,7 +249,11 @@ class PDFService {
   }
 
   //clientReport
-  Future<List<int>> clientReport(List<Client> list) async {
+  Future<List<int>> clientReport(
+    List<Client> list, {
+    String? initialDate,
+    String? finalDate,
+  }) async {
     final PdfDocument document = PdfDocument();
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
@@ -291,6 +289,15 @@ class PDFService {
     );
 
     if (list.isNotEmpty) {
+      if (initialDate != null && finalDate != null) {
+        page.graphics.drawString(
+          'Period: $initialDate - $finalDate',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      }
       PdfGrid grid = PdfGrid();
 
       grid.style = PdfGridStyle(

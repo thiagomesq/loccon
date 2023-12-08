@@ -12,7 +12,11 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       contact: json['contact'] as String?,
-    )..id = json['id'] as String?;
+    )
+      ..id = json['id'] as String?
+      ..createdAt = json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String);
 
 Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
       'id': instance.id,
@@ -21,4 +25,5 @@ Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
       'email': instance.email,
       'phone': instance.phone,
       'contact': instance.contact,
+      'createdAt': instance.createdAt?.toIso8601String(),
     };

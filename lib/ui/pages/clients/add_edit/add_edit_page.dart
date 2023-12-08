@@ -105,8 +105,7 @@ class AddEditClientPage extends StatelessWidget {
                               labelText: 'Email',
                               keyboardType: TextInputType.emailAddress,
                               initialValue: controller.email,
-                              onChanged: (value) =>
-                                  controller.email = phoneMask.getMaskedText(),
+                              onChanged: (value) => controller.email = value,
                             ),
                             const SizedBox(height: 16),
                             LCTextField(

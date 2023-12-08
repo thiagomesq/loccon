@@ -11,6 +11,7 @@ class Client {
   String? email;
   String? phone;
   String? contact;
+  DateTime? createdAt;
 
   Client({
     this.company,
@@ -18,7 +19,10 @@ class Client {
     this.email,
     this.phone,
     this.contact,
-  }) : id = const Uuid().v4();
+  }) {
+    createdAt = DateTime.now();
+    id = id ?? const Uuid().v4();
+  }
 
   factory Client.fromJson(Map<String, dynamic> json) => _$ClientFromJson(json);
 

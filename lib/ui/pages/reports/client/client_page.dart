@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:loccon/core/enums/report_type.dart';
 import 'package:loccon/core/models/report_data.dart';
 import 'package:loccon/ui/pages/reports/client/client_controller.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
+import 'package:loccon/ui/shared/lc_text_field.dart';
 
 class ClientReportPage extends StatelessWidget {
   static const routeName = '/reports/client';
@@ -41,22 +43,63 @@ class ClientReportPage extends StatelessWidget {
               builder: (_) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Clients Report',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 16),
-                    /*Expanded(
+                    Expanded(
                       child: Form(
                         child: ListView(
                           padding: const EdgeInsets.all(0),
-                          children: [],
+                          children: [
+                            Observer(
+                              builder: (_) {
+                                return LCTextField(
+                                  controller: TextEditingController(),
+                                  initialValue:
+                                      controller.initialRegistrationDate,
+                                  labelText: 'Initial Registration Date *',
+                                  isDatePicker: true,
+                                  onChanged: (value) {
+                                    controller.initialRegistrationDate = value;
+                                  },
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 16),
+                            Observer(
+                              builder: (_) {
+                                if (controller.initialRegistrationDate !=
+                                        null &&
+                                    controller
+                                        .initialRegistrationDate!.isEmpty) {
+                                  DateTime date = DateFormat('MM-dd-yyyy')
+                                      .parse(
+                                          controller.initialRegistrationDate!);
+                                  date = date.add(const Duration(days: 1));
+                                  controller.finalRegistrationDate =
+                                      DateFormat('MM-dd-yyyy').format(date);
+                                }
+
+                                return LCTextField(
+                                  controller: TextEditingController(),
+                                  initialValue:
+                                      controller.finalRegistrationDate,
+                                  labelText: 'Final Registration Date *',
+                                  isDatePicker: true,
+                                  onChanged: (value) {
+                                    controller.finalRegistrationDate = value;
+                                  },
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),*/
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -64,6 +107,7 @@ class ClientReportPage extends StatelessWidget {
                           child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
                                 controller.clientReport(ReportType.pdf),
+                            isValid: controller.isFormValid,
                             onOk: (_, bytes) async {
                               await Navigator.of(context).pushNamed(
                                 PdfViewerPage.routeName,

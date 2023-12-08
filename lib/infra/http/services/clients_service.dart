@@ -1,4 +1,7 @@
+import 'package:intl/intl.dart';
+import 'package:loccon/core/enums/operator.dart';
 import 'package:loccon/core/models/client.dart';
+import 'package:loccon/core/models/filtro.dart';
 import 'package:loccon/infra/http/services/firestore_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -8,8 +11,32 @@ class ClientsService {
 
   ClientsService(this._firestoreService);
 
-  Future<ObservableList<Client>> getClients() async {
-    final list = await _firestoreService.getData(collection);
+  Future<ObservableList<Client>> getClients(
+      {String? initialDate, String? finalDate}) async {
+    var list = <Map<String, dynamic>>[];
+    if (initialDate != null && finalDate != null) {
+      list = await _firestoreService.getDataByFilters(
+        collection,
+        [
+          Filtro(
+            key: 'createdAt',
+            operator: Operator.isGreaterThanOrEqualTo,
+            value:
+                DateFormat('MM-dd-yyyy').parse(initialDate).toIso8601String(),
+          ),
+          Filtro(
+            key: 'createdAt',
+            operator: Operator.isLessThanOrEqualTo,
+            value: DateFormat('MM-dd-yyyy')
+                .parse(finalDate)
+                .add(const Duration(days: 1))
+                .toIso8601String(),
+          ),
+        ],
+      );
+    } else {
+      list = await _firestoreService.getData(collection);
+    }
     return list.map((doc) => Client.fromJson(doc)).toList().asObservable();
   }
 
