@@ -83,7 +83,11 @@ class PDFService {
         cellPadding: PdfPaddings(left: 5, right: 5, top: 5, bottom: 5),
       );
 
-      grid.columns.add(count: 4);
+      if (initialDate != null && finalDate != null) {
+        grid.columns.add(count: 5);
+      } else {
+        grid.columns.add(count: 4);
+      }
 
       grid.headers.add(1);
 
@@ -91,27 +95,56 @@ class PDFService {
           style: PdfFontStyle.bold);
 
       PdfGridRow header = grid.headers[0];
-      header.cells[0].value = 'Client';
-      header.cells[0].style.font = headerFontStyle;
-      header.cells[1].value = 'Rental Address';
-      header.cells[1].style.font = headerFontStyle;
-      header.cells[2].value = 'Container #';
-      header.cells[2].style.font = headerFontStyle;
-      header.cells[3].value = 'Capacity';
-      header.cells[3].style.font = headerFontStyle;
+      if (initialDate != null && finalDate != null) {
+        header.cells[0].value = 'Client';
+        header.cells[0].style.font = headerFontStyle;
+        header.cells[1].value = 'Rantal Date';
+        header.cells[1].style.font = headerFontStyle;
+        header.cells[2].value = 'Rental Address';
+        header.cells[2].style.font = headerFontStyle;
+        header.cells[3].value = 'Container #';
+        header.cells[3].style.font = headerFontStyle;
+        header.cells[4].value = 'Capacity';
+        header.cells[4].style.font = headerFontStyle;
+      } else {
+        header.cells[0].value = 'Client';
+        header.cells[0].style.font = headerFontStyle;
+        header.cells[1].value = 'Rental Address';
+        header.cells[1].style.font = headerFontStyle;
+        header.cells[2].value = 'Container #';
+        header.cells[2].style.font = headerFontStyle;
+        header.cells[3].value = 'Capacity';
+        header.cells[3].style.font = headerFontStyle;
+      }
 
       for (var item in list) {
         PdfGridRow row = grid.rows.add();
-        row.cells[0].value = item.client.name;
-        row.cells[1].value =
-            '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
-        row.cells[2].value = item.dumpster.code;
-        row.cells[3].value = '${item.dumpster.size}Y';
+        if (initialDate != null && finalDate != null) {
+          row.cells[0].value = item.client.name;
+          row.cells[1].value = item.rental.rentalDate;
+          row.cells[2].value =
+              '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
+          row.cells[3].value = item.dumpster.code;
+          row.cells[4].value = '${item.dumpster.size}Y';
+        } else {
+          row.cells[0].value = item.client.name;
+          row.cells[1].value =
+              '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
+          row.cells[2].value = item.dumpster.code;
+          row.cells[3].value = '${item.dumpster.size}Y';
+        }
       }
 
-      grid.columns[0].width = 200;
-      grid.columns[2].width = 77;
-      grid.columns[3].width = 60;
+      if (initialDate != null && finalDate != null) {
+        grid.columns[0].width = 200;
+        grid.columns[1].width = 77;
+        grid.columns[3].width = 77;
+        grid.columns[4].width = 60;
+      } else {
+        grid.columns[0].width = 200;
+        grid.columns[2].width = 77;
+        grid.columns[3].width = 60;
+      }
 
       grid.draw(
         page: page,
@@ -121,7 +154,12 @@ class PDFService {
       page.graphics.drawString(
         'No data found',
         PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
-        bounds: Rect.fromLTWH(0, titleTotalHeight + 30, 515, 30),
+        bounds: Rect.fromLTWH(
+          0,
+          titleTotalHeight + 30,
+          document.pageSettings.width,
+          30,
+        ),
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
         format: PdfStringFormat(alignment: PdfTextAlignment.center),
       );
@@ -160,7 +198,7 @@ class PDFService {
 
     document.template.top = headerTemplate;
 
-    const titlePosition = Rect.fromLTWH(0, 20, 515, 35);
+    final titlePosition = Rect.fromLTWH(0, 20, document.pageSettings.width, 35);
     final titleTotalHeight = titlePosition.height + titlePosition.top;
 
     PdfPage page = document.pages.add();
@@ -208,7 +246,11 @@ class PDFService {
         cellPadding: PdfPaddings(left: 5, right: 5, top: 5, bottom: 5),
       );
 
-      grid.columns.add(count: 2);
+      if (initialDate != null && finalDate != null) {
+        grid.columns.add(count: 4);
+      } else {
+        grid.columns.add(count: 3);
+      }
 
       grid.headers.add(1);
 
@@ -216,18 +258,48 @@ class PDFService {
           style: PdfFontStyle.bold);
 
       PdfGridRow header = grid.headers[0];
-      header.cells[0].value = 'Client';
-      header.cells[0].style.font = headerFontStyle;
-      header.cells[1].value = 'Container #';
-      header.cells[1].style.font = headerFontStyle;
+      if (initialDate != null && finalDate != null) {
+        header.cells[0].value = 'Client';
+        header.cells[0].style.font = headerFontStyle;
+        header.cells[1].value = 'Retrieval Date';
+        header.cells[1].style.font = headerFontStyle;
+        header.cells[2].value = 'Retrieval Address';
+        header.cells[2].style.font = headerFontStyle;
+        header.cells[3].value = 'Container #';
+        header.cells[3].style.font = headerFontStyle;
+      } else {
+        header.cells[0].value = 'Client';
+        header.cells[0].style.font = headerFontStyle;
+        header.cells[1].value = 'Retrieval Address';
+        header.cells[1].style.font = headerFontStyle;
+        header.cells[2].value = 'Container #';
+        header.cells[2].style.font = headerFontStyle;
+      }
 
       for (var item in list) {
         PdfGridRow row = grid.rows.add();
-        row.cells[0].value = item.client.name;
-        row.cells[1].value = item.dumpster.code;
+        if (initialDate != null && finalDate != null) {
+          row.cells[0].value = item.client.name;
+          row.cells[1].value = item.rental.retrievalDate;
+          row.cells[2].value =
+              '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
+          row.cells[3].value = item.dumpster.code;
+        } else {
+          row.cells[0].value = item.client.name;
+          row.cells[1].value =
+              '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
+          row.cells[3].value = item.dumpster.code;
+        }
       }
 
-      grid.columns[1].width = 77;
+      if (initialDate != null && finalDate != null) {
+        grid.columns[0].width = 200;
+        grid.columns[1].width = 90;
+        grid.columns[3].width = 77;
+      } else {
+        grid.columns[0].width = 200;
+        grid.columns[2].width = 77;
+      }
 
       grid.draw(
         page: page,
@@ -237,7 +309,12 @@ class PDFService {
       page.graphics.drawString(
         'No data found',
         PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
-        bounds: Rect.fromLTWH(0, titleTotalHeight + 30, 515, 30),
+        bounds: Rect.fromLTWH(
+          0,
+          titleTotalHeight + 30,
+          document.pageSettings.width,
+          30,
+        ),
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
         format: PdfStringFormat(alignment: PdfTextAlignment.center),
       );

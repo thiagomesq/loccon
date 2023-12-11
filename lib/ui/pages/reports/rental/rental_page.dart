@@ -203,15 +203,6 @@ class RentalReportPage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           Observer(
                                             builder: (_) {
-                                              DateTime date =
-                                                  DateFormat('MM-dd-yyyy')
-                                                      .parse(controller
-                                                          .initialRentalDate);
-                                              date = date
-                                                  .add(const Duration(days: 1));
-                                              controller.finalRentalDate =
-                                                  DateFormat('MM-dd-yyyy')
-                                                      .format(date);
                                               return LCTextField(
                                                 controller:
                                                     TextEditingController(),

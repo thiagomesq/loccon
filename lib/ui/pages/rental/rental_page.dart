@@ -43,7 +43,52 @@ class RentalPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
+                                Text('Dumpsters available',
+                                    style: theme.textTheme.titleSmall),
+                                const SizedBox(width: 10),
                                 Expanded(
+                                  flex: 1,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      final sizeHeader =
+                                          controller.sizeHeaders![index];
+                                      final itemCount =
+                                          controller.sizeHeaders!.length;
+                                      final dumpsters = controller.dumpsters!;
+                                      final screenWidth =
+                                          MediaQuery.of(context).size.width;
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: (screenWidth /
+                                                    (2 * itemCount)) /
+                                                itemCount),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: '$sizeHeader: ',
+                                                style: theme
+                                                    .textTheme.bodyLarge!
+                                                    .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    '${dumpsters.where((dumpster) => sizeHeader.contains('${dumpster.size}Y') && !dumpster.isRented).length}',
+                                              ),
+                                            ],
+                                          ),
+                                          style: theme.textTheme.bodyLarge,
+                                        ),
+                                      );
+                                    },
+                                    itemCount: controller.sizeHeaders!.length,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 19,
                                   child: ListView.builder(
                                     itemBuilder: (context, index) {
                                       final sizeHeader =
