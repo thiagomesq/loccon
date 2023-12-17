@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loccon/core/models/lc_user.dart';
 import 'package:loccon/infra/http/services/auth_service.dart';
+import 'package:loccon/infra/http/services/prices_service.dart';
 import 'package:loccon/infra/http/services/user_service.dart';
 import 'package:loccon/ui/shared/controller_base/controller_base.dart';
+import 'package:loccon/ui/stores/prices_store.dart';
 import 'package:loccon/ui/stores/user_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -13,14 +15,18 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase extends ControllerBase with Store {
   final AuthService _authService;
-  final UserStore _userStore;
   final UserService _userService;
+  final PricesService _pricesService;
+  final UserStore _userStore;
+  final PricesStore _pricesStore;
   final void Function(BuildContext context, LCUser? user) _onValidatedCode;
 
   _LoginControllerBase(
     this._authService,
-    this._userStore,
     this._userService,
+    this._pricesService,
+    this._userStore,
+    this._pricesStore,
     this._onValidatedCode,
   );
 
@@ -62,6 +68,8 @@ abstract class _LoginControllerBase extends ControllerBase with Store {
     } else {
       _userStore.setIsNewUser(true);
     }
+    final prices = await _pricesService.getPrices();
+    _pricesStore.setPrices(prices!);
     _onValidatedCode(context, lcUser);
   }
 
@@ -74,6 +82,7 @@ abstract class _LoginControllerBase extends ControllerBase with Store {
         print(e);
       },
     );
+    phone = '';
     isCodeSent = true;
   }
 }

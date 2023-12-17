@@ -40,9 +40,9 @@ abstract class SplashControllerBase extends ControllerBase with Store {
       } else {
         _userStore.setUser(user);
       }
+      final prices = await _pricesService.getPrices();
+      _pricesStore.setPrices(prices!);
     }
-    final prices = await _pricesService.getPrices();
-    _pricesStore.setPrices(prices!);
     onAuthenticated(u != null, user);
   }
 }

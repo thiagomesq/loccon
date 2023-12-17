@@ -203,4 +203,77 @@ class RentalService {
     }
     return rentalReport;
   }
+
+  Future<List<RentalReport>> getDumpsterUtilizationReport(
+    String initialDate,
+    String finalDate, {
+    String? dumpsterId,
+    int? size,
+  }) async {
+    var list = <Map<String, dynamic>>[];
+    if (dumpsterId != null) {
+      list = await _firestoreService.getDataByFilters(
+        collection,
+        [
+          Filtro(
+            key: 'dumpster',
+            operator: Operator.isEqualTo,
+            value: dumpsterId,
+          ),
+          Filtro(
+            key: 'rentalDate',
+            operator: Operator.isGreaterThanOrEqualTo,
+            value: initialDate,
+          ),
+          Filtro(
+            key: 'rentalDate',
+            operator: Operator.isLessThanOrEqualTo,
+            value: finalDate,
+          ),
+        ],
+      );
+    } else {
+      list = await _firestoreService.getDataByFilters(
+        collection,
+        [
+          Filtro(
+            key: 'rentalDate',
+            operator: Operator.isGreaterThanOrEqualTo,
+            value: initialDate,
+          ),
+          Filtro(
+            key: 'rentalDate',
+            operator: Operator.isLessThanOrEqualTo,
+            value: finalDate,
+          ),
+        ],
+      );
+    }
+    List<RentalReport> rentalReport = [];
+    for (var e in list) {
+      final client = Client.fromJson(
+          (await _firestoreService.getDataById('clients', e['client'])));
+      final dumpster = Dumpster.fromJson(
+          (await _firestoreService.getDataById('dumpsters', e['dumpster'])));
+      if (size != null) {
+        if (dumpster.size == size) {
+          rentalReport.add(RentalReport(
+            rental: Rental.fromJson(e),
+            client: client,
+            dumpster: dumpster,
+          ));
+        }
+      } else {
+        rentalReport.add(RentalReport(
+          rental: Rental.fromJson(e),
+          client: client,
+          dumpster: dumpster,
+        ));
+      }
+    }
+    if (rentalReport.isNotEmpty) {
+      rentalReport.sort((a, b) => a.dumpster.code!.compareTo(b.dumpster.code!));
+    }
+    return rentalReport;
+  }
 }

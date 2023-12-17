@@ -11,6 +11,7 @@ import 'package:loccon/ui/shared/lc_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = '/login';
+
   const LoginPage({super.key});
 
   void onValidatedCodo(BuildContext context, LCUser? user) {
@@ -28,9 +29,12 @@ class LoginPage extends StatelessWidget {
         GetIt.I(),
         GetIt.I(),
         GetIt.I(),
+        GetIt.I(),
+        GetIt.I(),
         onValidatedCodo,
       ),
       builder: (context, controller) {
+        final sendSMSController = TextEditingController();
         return Scaffold(
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -51,6 +55,7 @@ class LoginPage extends StatelessWidget {
                   builder: (_) {
                     return !controller.isCodeSent
                         ? LCTextField(
+                            controller: sendSMSController,
                             keyboardType: TextInputType.phone,
                             labelText: 'Phone',
                             onChanged: (value) => controller.phone = value,
@@ -69,6 +74,7 @@ class LoginPage extends StatelessWidget {
                         ? LCFutureButton(
                             isValid: controller.isFormValid,
                             futureBuilder: (_) {
+                              sendSMSController.clear();
                               return controller.sendCode();
                             },
                             child: const Text('Send SMS'),

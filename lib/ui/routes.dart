@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:loccon/ui/pages/rental/add_edit/add_edit_page.dart';
 import 'package:loccon/ui/pages/rental/part/dumpster_rental_info_page.dart';
 import 'package:loccon/ui/pages/reports/client/client_page.dart';
+import 'package:loccon/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
 import 'package:loccon/ui/pages/reports/rental/rental_page.dart';
 import 'package:loccon/ui/pages/reports/retrieval/retrieval_page.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
@@ -25,4 +26,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   RetrievalReportPage.routeName: (_) => const RetrievalReportPage(),
   ClientReportPage.routeName: (_) => const ClientReportPage(),
   PdfViewerPage.routeName: (_) => const PdfViewerPage(),
+  DumpsterUtilizationPage.routeName: (_) => const DumpsterUtilizationPage(),
 };

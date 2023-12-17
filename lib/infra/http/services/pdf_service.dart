@@ -1,6 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:loccon/core/models/client.dart';
+import 'package:loccon/core/models/dumpster.dart';
 
 import 'package:loccon/core/models/rental_report.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -17,23 +18,7 @@ class PDFService {
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
 
-    final PdfPageTemplateElement headerTemplate =
-        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 56.70));
-
-    final storageRef = FirebaseStorage.instance.ref();
-
-    var response = await get(Uri.parse(
-        await storageRef.child('images/escrita.png').getDownloadURL()));
-    var data = response.bodyBytes;
-
-    PdfBitmap image = PdfBitmap(data);
-
-    headerTemplate.graphics.drawImage(
-      image,
-      const Rect.fromLTWH(0, 0, 200, 56.70),
-    );
-
-    document.template.top = headerTemplate;
+    document.template.top = await header();
 
     final titlePosition = Rect.fromLTWH(0, 20, document.pageSettings.width, 35);
     final titleTotalHeight = titlePosition.height + titlePosition.top;
@@ -180,23 +165,7 @@ class PDFService {
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
 
-    final PdfPageTemplateElement headerTemplate =
-        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 56.70));
-
-    final storageRef = FirebaseStorage.instance.ref();
-
-    var response = await get(Uri.parse(
-        await storageRef.child('images/escrita.png').getDownloadURL()));
-    var data = response.bodyBytes;
-
-    PdfBitmap image = PdfBitmap(data);
-
-    headerTemplate.graphics.drawImage(
-      image,
-      const Rect.fromLTWH(0, 0, 200, 56.70),
-    );
-
-    document.template.top = headerTemplate;
+    document.template.top = await header();
 
     final titlePosition = Rect.fromLTWH(0, 20, document.pageSettings.width, 35);
     final titleTotalHeight = titlePosition.height + titlePosition.top;
@@ -335,25 +304,9 @@ class PDFService {
 
     document.pageSettings.orientation = PdfPageOrientation.landscape;
 
-    final PdfPageTemplateElement headerTemplate =
-        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 56.70));
+    document.template.top = await header();
 
-    final storageRef = FirebaseStorage.instance.ref();
-
-    var response = await get(Uri.parse(
-        await storageRef.child('images/escrita.png').getDownloadURL()));
-    var data = response.bodyBytes;
-
-    PdfBitmap image = PdfBitmap(data);
-
-    headerTemplate.graphics.drawImage(
-      image,
-      const Rect.fromLTWH(0, 0, 200, 56.70),
-    );
-
-    document.template.top = headerTemplate;
-
-    const titlePosition = Rect.fromLTWH(0, 20, 515, 35);
+    final titlePosition = Rect.fromLTWH(0, 20, document.pageSettings.width, 35);
     final titleTotalHeight = titlePosition.height + titlePosition.top;
 
     PdfPage page = document.pages.add();
@@ -419,7 +372,8 @@ class PDFService {
       page.graphics.drawString(
         'No data found',
         PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
-        bounds: Rect.fromLTWH(0, titleTotalHeight + 30, 515, 30),
+        bounds: Rect.fromLTWH(
+            0, titleTotalHeight + 30, document.pageSettings.width, 30),
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
         format: PdfStringFormat(alignment: PdfTextAlignment.center),
       );
@@ -427,5 +381,119 @@ class PDFService {
     List<int> bytes = await document.save();
     document.dispose();
     return bytes;
+  }
+
+  //dumpsterUtilizationReport
+  Future<List<int>> dumpsterUtilizationReport(
+    List<RentalReport> list,
+    String initialDate,
+    String finalDate,
+  ) async {
+    final PdfDocument document = PdfDocument();
+
+    document.template.top = await header();
+
+    const titlePosition = Rect.fromLTWH(0, 20, 515, 35);
+    final titleTotalHeight = titlePosition.height + titlePosition.top;
+
+    PdfPage page = document.pages.add();
+    page.graphics.drawString(
+      'Dumpster Utilization Report',
+      PdfStandardFont(PdfFontFamily.helvetica, 30),
+      bounds: titlePosition,
+      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      format: PdfStringFormat(alignment: PdfTextAlignment.center),
+    );
+
+    if (list.isNotEmpty) {
+      page.graphics.drawString(
+        'Period: $initialDate - $finalDate',
+        PdfStandardFont(PdfFontFamily.helvetica, 14, style: PdfFontStyle.bold),
+        bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      );
+      PdfGrid grid = PdfGrid();
+
+      grid.style = PdfGridStyle(
+        font: PdfStandardFont(PdfFontFamily.helvetica, 12),
+        cellPadding: PdfPaddings(left: 5, right: 5, top: 5, bottom: 5),
+      );
+
+      grid.columns.add(count: 3);
+
+      grid.headers.add(1);
+
+      final headerFontStyle = PdfStandardFont(PdfFontFamily.helvetica, 12,
+          style: PdfFontStyle.bold);
+
+      PdfGridRow header = grid.headers[0];
+      header.cells[0].value = 'Dumpster #';
+      header.cells[0].style.font = headerFontStyle;
+      header.cells[1].value = 'Size';
+      header.cells[1].style.font = headerFontStyle;
+      header.cells[2].value = 'Utilization(s) #';
+      header.cells[2].style.font = headerFontStyle;
+
+      var dumpster = list[0].dumpster;
+
+      for (var item in list) {
+        PdfGridRow row = grid.rows.add();
+        row.cells[0].value = item.dumpster.code;
+        row.cells[1].value = '${item.dumpster.size}Y';
+        row.cells[2].value = list
+            .where((e) => e.dumpster.code == dumpster.code)
+            .length
+            .toString();
+        list.removeWhere((e) => e.dumpster.code == dumpster.code);
+        if (list.isNotEmpty) {
+          dumpster = list[0].dumpster;
+        } else {
+          break;
+        }
+      }
+
+      grid.draw(
+        page: page,
+        bounds: Rect.fromLTWH(0, titleTotalHeight + 35, 0, 0),
+      );
+    } else {
+      page.graphics.drawString(
+        'No data found',
+        PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
+        bounds: Rect.fromLTWH(
+          0,
+          titleTotalHeight + 30,
+          515,
+          30,
+        ),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    }
+
+    List<int> bytes = await document.save();
+    document.dispose();
+    return bytes;
+  }
+
+  //header
+  Future<PdfPageTemplateElement> header() async {
+    final PdfPageTemplateElement headerTemplate =
+        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 56.70));
+
+    final storageRef = FirebaseStorage.instance.ref();
+
+    var response = await get(Uri.parse(
+        await storageRef.child('images/escrita.png').getDownloadURL()));
+    var data = response.bodyBytes;
+
+    PdfBitmap image = PdfBitmap(data);
+
+    headerTemplate.graphics.drawImage(
+      image,
+      const Rect.fromLTWH(0, 0, 200, 56.70),
+    );
+
+    return headerTemplate;
   }
 }
