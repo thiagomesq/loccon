@@ -5,6 +5,7 @@ import 'package:loccon/core/models/rental.dart';
 import 'package:loccon/ui/pages/rental/add_edit/add_edit_page.dart';
 import 'package:loccon/ui/pages/rental/part/dumpster_rental_info_controller.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 import 'package:loccon/ui/shared/lc_button.dart';
 import 'package:loccon/ui/shared/lc_fetch.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
@@ -26,15 +27,7 @@ class DumpsterRentalInfoPage extends StatelessWidget {
       ),
       builder: (context, controller) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: theme.colorScheme.tertiary,
-            elevation: 15,
-            title: Image.asset(
-              'assets/images/escrita.png',
-              height: 40,
-            ),
-          ),
+          appBar: const LCAppBar(),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(

@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loccon/ui/pages/dumpsters/add_edit/add_edit_controller.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 import 'package:loccon/ui/shared/lc_dialog.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
 import 'package:loccon/ui/shared/lc_text_field.dart';
@@ -22,15 +23,7 @@ class AddEditDumpsterPage extends StatelessWidget {
       ),
       builder: (context, controller) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            elevation: 15,
-            title: Image.asset(
-              'assets/images/escrita.png',
-              height: 40,
-            ),
-          ),
+          appBar: const LCAppBar(),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(

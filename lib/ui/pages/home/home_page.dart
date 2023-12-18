@@ -8,6 +8,7 @@ import 'package:loccon/ui/pages/prices/prices_page.dart';
 import 'package:loccon/ui/pages/rental/rental_page.dart';
 import 'package:loccon/ui/pages/reports/reports_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -41,15 +42,7 @@ class _HomePageState extends State<HomePage> {
       ),
       builder: (context, controller) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            elevation: 15,
-            title: Image.asset(
-              'assets/images/escrita.png',
-              height: 40,
-            ),
-          ),
+          appBar: const LCAppBar(),
           body: _screenOptions.elementAt(_selectedIndex),
           bottomNavigationBar: LCBottomNavigationBar(
             items: const [

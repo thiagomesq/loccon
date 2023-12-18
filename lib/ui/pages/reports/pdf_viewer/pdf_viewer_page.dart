@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loccon/core/models/report_data.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerPage extends StatelessWidget {
@@ -20,15 +21,7 @@ class PdfViewerPage extends StatelessWidget {
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
-        elevation: 15,
-        title: Image.asset(
-          'assets/images/escrita.png',
-          height: 40,
-        ),
-      ),
+      appBar: const LCAppBar(),
       body: SfPdfViewer.memory(Uint8List.fromList(reportData.bytes)),
     );
   }

@@ -5,6 +5,7 @@ import 'package:loccon/core/enums/user_type.dart';
 import 'package:loccon/ui/pages/home/home_page.dart';
 import 'package:loccon/ui/pages/user/user_controller.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 import 'package:loccon/ui/shared/lc_fetch.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
 import 'package:loccon/ui/shared/lc_text_field.dart';
@@ -23,15 +24,7 @@ class UserPage extends StatelessWidget {
       ),
       builder: (context, controller) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            elevation: 15,
-            title: Image.asset(
-              'assets/images/escrita.png',
-              height: 40,
-            ),
-          ),
+          appBar: const LCAppBar(),
           body: Observer(
             builder: (_) {
               return LCFetch(

@@ -33,7 +33,8 @@ abstract class SplashControllerBase extends ControllerBase with Store {
   void init() async {
     final u = await _authService.getUser();
     LCUser? user;
-    if (u != null) {
+    bool isNotNullUser = u != null;
+    if (isNotNullUser) {
       user = await _userService.getUser(u.uid);
       if (user.id == null) {
         _userStore.setIsNewUser(true);
@@ -43,6 +44,6 @@ abstract class SplashControllerBase extends ControllerBase with Store {
       final prices = await _pricesService.getPrices();
       _pricesStore.setPrices(prices!);
     }
-    onAuthenticated(u != null, user);
+    onAuthenticated(isNotNullUser, user);
   }
 }

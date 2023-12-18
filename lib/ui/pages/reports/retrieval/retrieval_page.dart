@@ -8,6 +8,7 @@ import 'package:loccon/core/models/report_data.dart';
 import 'package:loccon/ui/pages/reports/retrieval/retrieval_controller.dart';
 import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:loccon/ui/shared/lc_app_bar.dart';
 import 'package:loccon/ui/shared/lc_dropdown_button.dart';
 import 'package:loccon/ui/shared/lc_future_button.dart';
 import 'package:loccon/ui/shared/lc_text_field.dart';
@@ -34,15 +35,7 @@ class RetrievalReportPage extends StatelessWidget {
             )
             .toList();
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            elevation: 15,
-            title: Image.asset(
-              'assets/images/escrita.png',
-              height: 40,
-            ),
-          ),
+          appBar: const LCAppBar(),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
