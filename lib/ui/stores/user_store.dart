@@ -1,4 +1,4 @@
-import 'package:loccon/core/models/lc_user.dart';
+import 'package:dumpin/core/models/lc_user.dart';
 import 'package:mobx/mobx.dart';
 
 class UserStore with Store {

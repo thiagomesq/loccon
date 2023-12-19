@@ -1,6 +1,6 @@
 {
-    "name": "loccon",
-    "short_name": "loccon",
+    "name": "dumpin",
+    "short_name": "dumpin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

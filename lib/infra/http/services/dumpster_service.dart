@@ -1,5 +1,5 @@
-import 'package:loccon/core/models/dumpster.dart';
-import 'package:loccon/infra/http/services/firestore_service.dart';
+import 'package:dumpin/core/models/dumpster.dart';
+import 'package:dumpin/infra/http/services/firestore_service.dart';
 import 'package:mobx/mobx.dart';
 
 class DumpsterService {

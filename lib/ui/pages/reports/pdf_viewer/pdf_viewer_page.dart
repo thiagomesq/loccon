@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loccon/core/models/report_data.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/core/models/report_data.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerPage extends StatelessWidget {

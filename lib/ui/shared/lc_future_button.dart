@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loccon/ui/shared/lc_button.dart';
-import 'package:loccon/ui/shared/lc_future_executor.dart';
+import 'package:dumpin/ui/shared/lc_button.dart';
+import 'package:dumpin/ui/shared/lc_future_executor.dart';
 
 class LCFutureButton<T> extends StatelessWidget {
   final Widget? icon;

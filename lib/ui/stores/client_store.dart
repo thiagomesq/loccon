@@ -1,4 +1,4 @@
-import 'package:loccon/core/models/client.dart';
+import 'package:dumpin/core/models/client.dart';
 import 'package:mobx/mobx.dart';
 
 class ClientStore with Store {

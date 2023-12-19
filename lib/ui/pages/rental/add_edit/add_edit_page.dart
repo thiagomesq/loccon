@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/core/models/client.dart';
-import 'package:loccon/ui/pages/rental/add_edit/add_edit_controller.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
-import 'package:loccon/ui/shared/lc_fetch.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
-import 'package:loccon/ui/shared/lc_text_field.dart';
-import 'package:loccon/ui/shared/lc_type_ahead_field.dart';
+import 'package:dumpin/core/models/client.dart';
+import 'package:dumpin/ui/pages/rental/add_edit/add_edit_controller.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/ui/shared/lc_fetch.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
+import 'package:dumpin/ui/shared/lc_text_field.dart';
+import 'package:dumpin/ui/shared/lc_type_ahead_field.dart';
 
 class AddEditRentalPage extends StatelessWidget {
   static const String routeName = '/rental/add-edit';

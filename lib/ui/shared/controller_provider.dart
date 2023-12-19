@@ -1,4 +1,4 @@
-import 'package:loccon/ui/shared/controller_base/controller_base.dart';
+import 'package:dumpin/ui/shared/controller_base/controller_base.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 

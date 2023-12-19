@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/ui/pages/dumpsters/add_edit/add_edit_controller.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
-import 'package:loccon/ui/shared/lc_dialog.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
-import 'package:loccon/ui/shared/lc_text_field.dart';
+import 'package:dumpin/ui/pages/dumpsters/add_edit/add_edit_controller.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/ui/shared/lc_dialog.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
+import 'package:dumpin/ui/shared/lc_text_field.dart';
 
 class AddEditDumpsterPage extends StatelessWidget {
   static const routeName = '/dumpsters/add-edit';

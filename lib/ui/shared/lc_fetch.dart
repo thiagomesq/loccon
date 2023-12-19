@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:loccon/ui/shared/lc_error.dart';
+import 'package:dumpin/ui/shared/lc_error.dart';
 import 'package:mobx/mobx.dart';
 
 class LCFetch<T> extends StatelessWidget {

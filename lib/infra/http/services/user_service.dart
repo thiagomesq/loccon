@@ -1,5 +1,5 @@
-import 'package:loccon/core/models/lc_user.dart';
-import 'package:loccon/infra/http/services/firestore_service.dart';
+import 'package:dumpin/core/models/lc_user.dart';
+import 'package:dumpin/infra/http/services/firestore_service.dart';
 
 class UserService {
   final FirestoreService _firestoreService;

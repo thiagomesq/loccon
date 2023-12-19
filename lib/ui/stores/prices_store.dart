@@ -1,4 +1,4 @@
-import 'package:loccon/core/models/prices.dart';
+import 'package:dumpin/core/models/prices.dart';
 import 'package:mobx/mobx.dart';
 
 class PricesStore with Store {

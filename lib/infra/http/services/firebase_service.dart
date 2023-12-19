@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:loccon/firebase_options.dart';
+import 'package:dumpin/firebase_options.dart';
 
 class FirebaseService {
   static Future<FirebaseService> init() async {

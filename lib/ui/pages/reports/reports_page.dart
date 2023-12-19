@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loccon/ui/pages/reports/client/client_page.dart';
-import 'package:loccon/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
-import 'package:loccon/ui/pages/reports/rental/rental_page.dart';
-import 'package:loccon/ui/pages/reports/retrieval/retrieval_page.dart';
+import 'package:dumpin/ui/pages/reports/client/client_page.dart';
+import 'package:dumpin/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
+import 'package:dumpin/ui/pages/reports/rental/rental_page.dart';
+import 'package:dumpin/ui/pages/reports/retrieval/retrieval_page.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({super.key});

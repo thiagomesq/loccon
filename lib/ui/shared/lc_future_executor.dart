@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:loccon/ui/shared/lc_dialog.dart';
+import 'package:dumpin/ui/shared/lc_dialog.dart';
 import 'package:logging/logging.dart';
 
 class LCFutureExecutor<T> extends StatefulWidget {

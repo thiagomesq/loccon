@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/core/models/rental.dart';
-import 'package:loccon/ui/pages/rental/add_edit/add_edit_page.dart';
-import 'package:loccon/ui/pages/rental/part/dumpster_rental_info_controller.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
-import 'package:loccon/ui/shared/lc_button.dart';
-import 'package:loccon/ui/shared/lc_fetch.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
+import 'package:dumpin/core/models/rental.dart';
+import 'package:dumpin/ui/pages/rental/add_edit/add_edit_page.dart';
+import 'package:dumpin/ui/pages/rental/part/dumpster_rental_info_controller.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/ui/shared/lc_button.dart';
+import 'package:dumpin/ui/shared/lc_fetch.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
 
 class DumpsterRentalInfoPage extends StatelessWidget {
   static const routeName = '/rental/dumpster/info';

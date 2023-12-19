@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
-import 'package:loccon/di.dart';
-import 'package:loccon/ui/pages/splash/splash_page.dart';
-import 'package:loccon/ui/routes.dart';
-import 'package:loccon/ui/theme.dart';
+import 'package:dumpin/di.dart';
+import 'package:dumpin/ui/pages/splash/splash_page.dart';
+import 'package:dumpin/ui/routes.dart';
+import 'package:dumpin/ui/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() async {

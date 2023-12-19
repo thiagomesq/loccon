@@ -1,5 +1,5 @@
-import 'package:loccon/core/models/prices.dart';
-import 'package:loccon/infra/http/services/firestore_service.dart';
+import 'package:dumpin/core/models/prices.dart';
+import 'package:dumpin/infra/http/services/firestore_service.dart';
 
 class PricesService {
   final FirestoreService _firestoreService;

@@ -1,4 +1,4 @@
-import 'package:loccon/core/models/dumpster.dart';
+import 'package:dumpin/core/models/dumpster.dart';
 import 'package:mobx/mobx.dart';
 
 class DumpsterStore with Store {

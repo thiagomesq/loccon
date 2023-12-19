@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/core/models/client.dart';
-import 'package:loccon/ui/pages/clients/add_edit/add_edit_page.dart';
-import 'package:loccon/ui/pages/clients/clients_controller.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_button.dart';
-import 'package:loccon/ui/shared/lc_fetch.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
+import 'package:dumpin/core/models/client.dart';
+import 'package:dumpin/ui/pages/clients/add_edit/add_edit_page.dart';
+import 'package:dumpin/ui/pages/clients/clients_controller.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_button.dart';
+import 'package:dumpin/ui/shared/lc_fetch.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
 
 class ClientsPage extends StatelessWidget {
   const ClientsPage({super.key});

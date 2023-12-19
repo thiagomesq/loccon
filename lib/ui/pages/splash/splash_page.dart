@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/ui/pages/home/home_page.dart';
-import 'package:loccon/ui/pages/login/login_page.dart';
-import 'package:loccon/ui/pages/splash/splash_controller.dart';
-import 'package:loccon/ui/pages/user/user_page.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/pages/home/home_page.dart';
+import 'package:dumpin/ui/pages/login/login_page.dart';
+import 'package:dumpin/ui/pages/splash/splash_controller.dart';
+import 'package:dumpin/ui/pages/user/user_page.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
 
 class SplashPage extends StatelessWidget {
   static const String routeName = '/';

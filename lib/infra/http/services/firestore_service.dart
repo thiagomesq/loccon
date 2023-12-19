@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:loccon/core/enums/operator.dart';
-import 'package:loccon/core/models/filtro.dart';
+import 'package:dumpin/core/enums/operator.dart';
+import 'package:dumpin/core/models/filtro.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

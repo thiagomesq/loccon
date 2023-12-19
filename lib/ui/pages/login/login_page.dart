@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/core/models/lc_user.dart';
-import 'package:loccon/ui/pages/home/home_page.dart';
-import 'package:loccon/ui/pages/login/login_controller.dart';
-import 'package:loccon/ui/pages/user/user_page.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
-import 'package:loccon/ui/shared/lc_text_field.dart';
+import 'package:dumpin/core/models/lc_user.dart';
+import 'package:dumpin/ui/pages/home/home_page.dart';
+import 'package:dumpin/ui/pages/login/login_controller.dart';
+import 'package:dumpin/ui/pages/user/user_page.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
+import 'package:dumpin/ui/shared/lc_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = '/login';

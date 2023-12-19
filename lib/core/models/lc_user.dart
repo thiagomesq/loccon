@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:loccon/core/enums/user_type.dart';
+import 'package:dumpin/core/enums/user_type.dart';
 
 part 'lc_user.g.dart';
 

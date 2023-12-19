@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:intl/intl.dart';
-import 'package:loccon/core/enums/report_type.dart';
-import 'package:loccon/core/models/client.dart';
-import 'package:loccon/infra/http/services/clients_service.dart';
-import 'package:loccon/infra/http/services/excel_service.dart';
-import 'package:loccon/infra/http/services/pdf_service.dart';
+import 'package:dumpin/core/enums/report_type.dart';
+import 'package:dumpin/core/models/client.dart';
+import 'package:dumpin/infra/http/services/clients_service.dart';
+import 'package:dumpin/infra/http/services/excel_service.dart';
+import 'package:dumpin/infra/http/services/pdf_service.dart';
 import 'package:mobx/mobx.dart';
-import 'package:loccon/ui/shared/controller_base/controller_base.dart';
+import 'package:dumpin/ui/shared/controller_base/controller_base.dart';
 
 part 'client_controller.g.dart';
 

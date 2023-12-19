@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loccon/ui/pages/clients/clients_page.dart';
-import 'package:loccon/ui/pages/dumpsters/dumpsters_page.dart';
-import 'package:loccon/ui/pages/home/home_controller.dart';
-import 'package:loccon/ui/pages/home/part/lc_bottom_navigation_bar.dart';
-import 'package:loccon/ui/pages/prices/prices_page.dart';
-import 'package:loccon/ui/pages/rental/rental_page.dart';
-import 'package:loccon/ui/pages/reports/reports_page.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/ui/pages/clients/clients_page.dart';
+import 'package:dumpin/ui/pages/dumpsters/dumpsters_page.dart';
+import 'package:dumpin/ui/pages/home/home_controller.dart';
+import 'package:dumpin/ui/pages/home/part/lc_bottom_navigation_bar.dart';
+import 'package:dumpin/ui/pages/prices/prices_page.dart';
+import 'package:dumpin/ui/pages/rental/rental_page.dart';
+import 'package:dumpin/ui/pages/reports/reports_page.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';

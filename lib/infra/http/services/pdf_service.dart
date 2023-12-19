@@ -1,9 +1,9 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
-import 'package:loccon/core/models/client.dart';
-import 'package:loccon/core/models/dumpster.dart';
+import 'package:dumpin/core/models/client.dart';
+import 'package:dumpin/core/models/dumpster.dart';
 
-import 'package:loccon/core/models/rental_report.dart';
+import 'package:dumpin/core/models/rental_report.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:http/http.dart' show get;
 

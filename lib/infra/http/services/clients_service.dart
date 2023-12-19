@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
-import 'package:loccon/core/enums/operator.dart';
-import 'package:loccon/core/models/client.dart';
-import 'package:loccon/core/models/filtro.dart';
-import 'package:loccon/infra/http/services/firestore_service.dart';
+import 'package:dumpin/core/enums/operator.dart';
+import 'package:dumpin/core/models/client.dart';
+import 'package:dumpin/core/models/filtro.dart';
+import 'package:dumpin/infra/http/services/firestore_service.dart';
 import 'package:mobx/mobx.dart';
 
 class ClientsService {

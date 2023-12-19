@@ -1,7 +1,7 @@
-import 'package:loccon/core/models/dumpster.dart';
-import 'package:loccon/infra/http/services/dumpster_service.dart';
-import 'package:loccon/ui/shared/controller_base/controller_base.dart';
-import 'package:loccon/ui/stores/rental_store.dart';
+import 'package:dumpin/core/models/dumpster.dart';
+import 'package:dumpin/infra/http/services/dumpster_service.dart';
+import 'package:dumpin/ui/shared/controller_base/controller_base.dart';
+import 'package:dumpin/ui/stores/rental_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'rental_controller.g.dart';

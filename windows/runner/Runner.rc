@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "loccon" "\0"
+            VALUE "FileDescription", "dumpin" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "loccon" "\0"
+            VALUE "InternalName", "dumpin" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "loccon.exe" "\0"
-            VALUE "ProductName", "loccon" "\0"
+            VALUE "OriginalFilename", "dumpin.exe" "\0"
+            VALUE "ProductName", "dumpin" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

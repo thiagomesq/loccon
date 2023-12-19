@@ -1,10 +1,10 @@
-import 'package:loccon/core/models/lc_user.dart';
-import 'package:loccon/infra/http/services/auth_service.dart';
-import 'package:loccon/infra/http/services/prices_service.dart';
-import 'package:loccon/infra/http/services/user_service.dart';
-import 'package:loccon/ui/shared/controller_base/controller_base.dart';
-import 'package:loccon/ui/stores/prices_store.dart';
-import 'package:loccon/ui/stores/user_store.dart';
+import 'package:dumpin/core/models/lc_user.dart';
+import 'package:dumpin/infra/http/services/auth_service.dart';
+import 'package:dumpin/infra/http/services/prices_service.dart';
+import 'package:dumpin/infra/http/services/user_service.dart';
+import 'package:dumpin/ui/shared/controller_base/controller_base.dart';
+import 'package:dumpin/ui/stores/prices_store.dart';
+import 'package:dumpin/ui/stores/user_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'splash_controller.g.dart';

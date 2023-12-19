@@ -1,4 +1,4 @@
-import 'package:loccon/core/enums/operator.dart';
+import 'package:dumpin/core/enums/operator.dart';
 
 class Filtro {
   final String key;

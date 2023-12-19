@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-import 'package:loccon/core/enums/report_type.dart';
-import 'package:loccon/core/models/report_data.dart';
-import 'package:loccon/ui/pages/reports/retrieval/retrieval_controller.dart';
-import 'package:loccon/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
-import 'package:loccon/ui/shared/controller_provider.dart';
-import 'package:loccon/ui/shared/lc_app_bar.dart';
-import 'package:loccon/ui/shared/lc_dropdown_button.dart';
-import 'package:loccon/ui/shared/lc_future_button.dart';
-import 'package:loccon/ui/shared/lc_text_field.dart';
+import 'package:dumpin/core/enums/report_type.dart';
+import 'package:dumpin/core/models/report_data.dart';
+import 'package:dumpin/ui/pages/reports/retrieval/retrieval_controller.dart';
+import 'package:dumpin/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
+import 'package:dumpin/ui/shared/controller_provider.dart';
+import 'package:dumpin/ui/shared/lc_app_bar.dart';
+import 'package:dumpin/ui/shared/lc_dropdown_button.dart';
+import 'package:dumpin/ui/shared/lc_future_button.dart';
+import 'package:dumpin/ui/shared/lc_text_field.dart';
 
 class RetrievalReportPage extends StatelessWidget {
   static const routeName = '/reports/retrieval';
