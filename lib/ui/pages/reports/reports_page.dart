@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dumpin/ui/pages/reports/client/client_page.dart';
 import 'package:dumpin/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
 import 'package:dumpin/ui/pages/reports/rental/rental_page.dart';
-import 'package:dumpin/ui/pages/reports/retrieval/retrieval_page.dart';
+import 'package:dumpin/ui/pages/reports/pick_up/pick_up_page.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({super.key});
@@ -35,8 +35,8 @@ class ReportsPage extends StatelessWidget {
                   text: 'Rental Report',
                 ),
                 ReportButton(
-                  route: RetrievalReportPage.routeName,
-                  text: 'Retrieval Report',
+                  route: PickUpReportPage.routeName,
+                  text: 'Pick up Report',
                 ),
                 ReportButton(
                   route: ClientReportPage.routeName,

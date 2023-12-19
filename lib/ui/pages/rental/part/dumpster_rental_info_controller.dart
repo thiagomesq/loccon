@@ -85,10 +85,9 @@ abstract class DumpsterRentalInfoControllerBase extends ControllerBase
   }
 
   Future<void> _retrieve() async {
-    rental!.retrievalDate = DateFormat('MM-dd-yyyy').format(DateTime.now());
+    rental!.pickUpDate = DateFormat('MM-dd-yyyy').format(DateTime.now());
     final rentalDate = DateFormat('MM-dd-yyyy').parse(rental!.rentalDate!);
-    final retrievalDate =
-        DateFormat('MM-dd-yyyy').parse(rental!.retrievalDate!);
+    final retrievalDate = DateFormat('MM-dd-yyyy').parse(rental!.pickUpDate!);
     final difference = retrievalDate.difference(rentalDate).inDays;
     if (difference <= 7) {
       rental!.price = prices.weeklyPrice;

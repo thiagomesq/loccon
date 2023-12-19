@@ -28,7 +28,7 @@ class RentalService {
           value: id,
         ),
         Filtro(
-          key: 'retrievalDate',
+          key: 'pickUpDate',
           operator: Operator.isNull,
           value: '',
         ),
@@ -54,7 +54,7 @@ class RentalService {
           value: id,
         ),
         Filtro(
-          key: 'retrievalDate',
+          key: 'pickUpDate',
           operator: Operator.isEqualTo,
           value: null,
         ),
@@ -149,7 +149,7 @@ class RentalService {
       collection,
       [
         Filtro(
-          key: 'retrievalDate',
+          key: 'pickUpDate',
           operator: Operator.isEqualTo,
           value: date,
         ),
@@ -178,12 +178,12 @@ class RentalService {
       collection,
       [
         Filtro(
-          key: 'retrievalDate',
+          key: 'pickUpDate',
           operator: Operator.isGreaterThanOrEqualTo,
           value: initialDate,
         ),
         Filtro(
-          key: 'retrievalDate',
+          key: 'pickUpDate',
           operator: Operator.isLessThanOrEqualTo,
           value: finalDate,
         ),

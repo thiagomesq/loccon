@@ -8,7 +8,7 @@ import 'package:dumpin/ui/pages/rental/part/dumpster_rental_info_page.dart';
 import 'package:dumpin/ui/pages/reports/client/client_page.dart';
 import 'package:dumpin/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
 import 'package:dumpin/ui/pages/reports/rental/rental_page.dart';
-import 'package:dumpin/ui/pages/reports/retrieval/retrieval_page.dart';
+import 'package:dumpin/ui/pages/reports/pick_up/pick_up_page.dart';
 import 'package:dumpin/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:dumpin/ui/pages/splash/splash_page.dart';
 import 'package:dumpin/ui/pages/user/user_page.dart';
@@ -23,7 +23,7 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   DumpsterRentalInfoPage.routeName: (_) => const DumpsterRentalInfoPage(),
   AddEditRentalPage.routeName: (_) => const AddEditRentalPage(),
   RentalReportPage.routeName: (_) => const RentalReportPage(),
-  RetrievalReportPage.routeName: (_) => const RetrievalReportPage(),
+  PickUpReportPage.routeName: (_) => const PickUpReportPage(),
   ClientReportPage.routeName: (_) => const ClientReportPage(),
   PdfViewerPage.routeName: (_) => const PdfViewerPage(),
   DumpsterUtilizationPage.routeName: (_) => const DumpsterUtilizationPage(),

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'retrieval_controller.dart';
+part of 'pick_up_controller.dart';
 
 // **************************************************************************
 // StoreGenerator

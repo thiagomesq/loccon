@@ -17,7 +17,7 @@ Rental _$RentalFromJson(Map<String, dynamic> json) => Rental(
       state: json['state'] as String?,
       zipCode: json['zipCode'] as String?,
       rentalDate: json['rentalDate'] as String?,
-      retrievalDate: json['retrievalDate'] as String?,
+      pickUpDate: json['pickUpDate'] as String?,
     )
       ..price = (json['price'] as num?)?.toDouble()
       ..createdAt = json['createdAt'] == null
@@ -35,7 +35,7 @@ Map<String, dynamic> _$RentalToJson(Rental instance) => <String, dynamic>{
       'state': instance.state,
       'zipCode': instance.zipCode,
       'rentalDate': instance.rentalDate,
-      'retrievalDate': instance.retrievalDate,
+      'pickUpDate': instance.pickUpDate,
       'price': instance.price,
       'createdAt': instance.createdAt?.toIso8601String(),
     };

@@ -15,7 +15,7 @@ class Rental {
   String? state;
   String? zipCode;
   String? rentalDate;
-  String? retrievalDate;
+  String? pickUpDate;
   double? price;
   DateTime? createdAt;
 
@@ -30,7 +30,7 @@ class Rental {
     this.state,
     this.zipCode,
     this.rentalDate,
-    this.retrievalDate,
+    this.pickUpDate,
   }) {
     createdAt = DateTime.now();
     id = id ?? const Uuid().v4();

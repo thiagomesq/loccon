@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:dumpin/core/enums/report_type.dart';
 import 'package:dumpin/core/models/report_data.dart';
-import 'package:dumpin/ui/pages/reports/retrieval/retrieval_controller.dart';
+import 'package:dumpin/ui/pages/reports/pick_up/pick_up_controller.dart';
 import 'package:dumpin/ui/pages/reports/pdf_viewer/pdf_viewer_page.dart';
 import 'package:dumpin/ui/shared/controller_provider.dart';
 import 'package:dumpin/ui/shared/lc_app_bar.dart';
@@ -13,9 +13,9 @@ import 'package:dumpin/ui/shared/lc_dropdown_button.dart';
 import 'package:dumpin/ui/shared/lc_future_button.dart';
 import 'package:dumpin/ui/shared/lc_text_field.dart';
 
-class RetrievalReportPage extends StatelessWidget {
+class PickUpReportPage extends StatelessWidget {
   static const routeName = '/reports/retrieval';
-  const RetrievalReportPage({super.key});
+  const PickUpReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RetrievalReportPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Retrieval Report',
+                      'Pick up Report',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 16),
@@ -76,7 +76,7 @@ class RetrievalReportPage extends StatelessWidget {
                                         controller: TextEditingController(),
                                         initialValue:
                                             controller.initialRetrievalDate,
-                                        labelText: 'Retrieval Date *',
+                                        labelText: 'Pick up Date *',
                                         isDatePicker: true,
                                         onChanged: (value) {
                                           controller.initialRetrievalDate =
@@ -96,7 +96,7 @@ class RetrievalReportPage extends StatelessWidget {
                                                 initialValue: controller
                                                     .initialRetrievalDate,
                                                 labelText:
-                                                    'Initial Retrieval Date *',
+                                                    'Initial Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
                                                   controller
@@ -165,7 +165,7 @@ class RetrievalReportPage extends StatelessWidget {
                                                 initialValue: controller
                                                     .finalRetrievalDate,
                                                 labelText:
-                                                    'Final Retrieval Date *',
+                                                    'Final Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
                                                   controller
@@ -188,7 +188,7 @@ class RetrievalReportPage extends StatelessWidget {
                                                 initialValue: controller
                                                     .initialRetrievalDate,
                                                 labelText:
-                                                    'Initial Retrieval Date *',
+                                                    'Initial Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
                                                   controller
@@ -207,7 +207,7 @@ class RetrievalReportPage extends StatelessWidget {
                                                 initialValue: controller
                                                     .finalRetrievalDate,
                                                 labelText:
-                                                    'Final Retrieval Date *',
+                                                    'Final Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
                                                   controller

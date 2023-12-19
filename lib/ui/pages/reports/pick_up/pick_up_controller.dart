@@ -9,7 +9,7 @@ import 'package:dumpin/infra/http/services/rental_service.dart';
 import 'package:dumpin/ui/shared/controller_base/controller_base.dart';
 import 'package:mobx/mobx.dart';
 
-part 'retrieval_controller.g.dart';
+part 'pick_up_controller.g.dart';
 
 class DiaryRetrievalController = DiaryRetrievalControllerBase
     with _$DiaryRetrievalController;
@@ -73,9 +73,9 @@ abstract class DiaryRetrievalControllerBase extends ControllerBase with Store {
     var file = File(path);
     var bytes = <int>[];
     if (period == 'Daily') {
-      bytes = await _pdfService.retrievalReport(list);
+      bytes = await _pdfService.pickUpReport(list);
     } else {
-      bytes = await _pdfService.retrievalReport(list,
+      bytes = await _pdfService.pickUpReport(list,
           initialDate: initialRetrievalDate, finalDate: finalRetrievalDate);
     }
     file.writeAsBytesSync(bytes);
@@ -87,7 +87,7 @@ abstract class DiaryRetrievalControllerBase extends ControllerBase with Store {
     var path =
         '/storage/emulated/0/Download/daily_retrieval_report-$initialRetrievalDate.pdf';
     var file = File(path);
-    final bytes = await _pdfService.retrievalReport(list);
+    final bytes = await _pdfService.pickUpReport(list);
     file.writeAsBytesSync(bytes);
     return bytes;
   }

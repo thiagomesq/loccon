@@ -1,7 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:dumpin/core/models/client.dart';
-import 'package:dumpin/core/models/dumpster.dart';
 
 import 'package:dumpin/core/models/rental_report.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -156,7 +155,7 @@ class PDFService {
   }
 
   //retrievalReport
-  Future<List<int>> retrievalReport(
+  Future<List<int>> pickUpReport(
     List<RentalReport> list, {
     String? initialDate,
     String? finalDate,
@@ -173,7 +172,7 @@ class PDFService {
     PdfPage page = document.pages.add();
     if (initialDate != null && finalDate != null) {
       page.graphics.drawString(
-        'Retrieval Report',
+        'Pick up Report',
         PdfStandardFont(PdfFontFamily.helvetica, 30),
         bounds: titlePosition,
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
@@ -181,7 +180,7 @@ class PDFService {
       );
     } else {
       page.graphics.drawString(
-        'Daily Retrieval Report',
+        'Daily Pick up Report',
         PdfStandardFont(PdfFontFamily.helvetica, 30),
         bounds: titlePosition,
         brush: PdfSolidBrush(PdfColor(0, 0, 0)),
@@ -230,16 +229,16 @@ class PDFService {
       if (initialDate != null && finalDate != null) {
         header.cells[0].value = 'Client';
         header.cells[0].style.font = headerFontStyle;
-        header.cells[1].value = 'Retrieval Date';
+        header.cells[1].value = 'Pick up Date';
         header.cells[1].style.font = headerFontStyle;
-        header.cells[2].value = 'Retrieval Address';
+        header.cells[2].value = 'Pick up Address';
         header.cells[2].style.font = headerFontStyle;
         header.cells[3].value = 'Container #';
         header.cells[3].style.font = headerFontStyle;
       } else {
         header.cells[0].value = 'Client';
         header.cells[0].style.font = headerFontStyle;
-        header.cells[1].value = 'Retrieval Address';
+        header.cells[1].value = 'Pick up Address';
         header.cells[1].style.font = headerFontStyle;
         header.cells[2].value = 'Container #';
         header.cells[2].style.font = headerFontStyle;
@@ -249,7 +248,7 @@ class PDFService {
         PdfGridRow row = grid.rows.add();
         if (initialDate != null && finalDate != null) {
           row.cells[0].value = item.client.name;
-          row.cells[1].value = item.rental.retrievalDate;
+          row.cells[1].value = item.rental.pickUpDate;
           row.cells[2].value =
               '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
           row.cells[3].value = item.dumpster.code;
@@ -257,7 +256,7 @@ class PDFService {
           row.cells[0].value = item.client.name;
           row.cells[1].value =
               '${item.rental.number} ${item.rental.street}, ${item.rental.neighborhood}, ${item.rental.city}, ${item.rental.state} ${item.rental.zipCode}';
-          row.cells[3].value = item.dumpster.code;
+          row.cells[2].value = item.dumpster.code;
         }
       }
 

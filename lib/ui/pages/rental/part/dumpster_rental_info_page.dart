@@ -171,7 +171,7 @@ class RentalInfoCard extends StatelessWidget {
                                       child: Text(
                                         controller.isBeforeRentalDate
                                             ? 'Cancel'
-                                            : 'Retrive',
+                                            : 'Pick up',
                                         style: theme.textTheme.bodyMedium,
                                       ),
                                     );
@@ -251,7 +251,7 @@ class RentalHistoryCard extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Text(
-              'Ritrieval date: ${rental.retrievalDate}',
+              'Pick up date: ${rental.pickUpDate}',
               style: theme.textTheme.bodySmall,
             ),
           ],
