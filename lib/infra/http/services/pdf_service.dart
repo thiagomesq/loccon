@@ -348,20 +348,20 @@ class PDFService {
       header.cells[1].style.font = headerFontStyle;
       header.cells[2].value = 'Phone';
       header.cells[2].style.font = headerFontStyle;
-      header.cells[3].value = 'Contact';
+      header.cells[3].value = 'Business Phone';
       header.cells[3].style.font = headerFontStyle;
 
       for (var item in list) {
         PdfGridRow row = grid.rows.add();
         row.cells[0].value = item.name ?? item.company;
-        row.cells[1].value = item.email ?? '';
+        row.cells[1].value = item.email;
         row.cells[2].value = item.phone;
-        row.cells[3].value = item.contact ?? '';
+        row.cells[3].value = item.businessPhone ?? '';
       }
 
-      grid.columns[1].width = 170;
+      grid.columns[1].width = 180;
       grid.columns[2].width = 96;
-      grid.columns[3].width = 96;
+      grid.columns[3].width = 103;
 
       grid.draw(
         page: page,

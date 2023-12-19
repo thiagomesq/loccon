@@ -11,7 +11,7 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
       name: json['name'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
-      contact: json['contact'] as String?,
+      businessPhone: json['businessPhone'] as String?,
     )
       ..id = json['id'] as String?
       ..createdAt = json['createdAt'] == null
@@ -24,6 +24,6 @@ Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
-      'contact': instance.contact,
+      'businessPhone': instance.businessPhone,
       'createdAt': instance.createdAt?.toIso8601String(),
     };

@@ -63,20 +63,20 @@ abstract class ClientControllerBase extends ControllerBase with Store {
 
   @action
   Future<List<int>> _clientReportPDF(List<Client> list) async {
-    var path = '';
+    /*var path = '';
     if (initialRegistrationDate != null && finalRegistrationDate != null) {
       path =
           '/storage/emulated/0/Download/client_report-$initialRegistrationDate-$finalRegistrationDate.pdf';
     } else {
       path = '/storage/emulated/0/Download/client_report.pdf';
     }
-    var file = File(path);
+    var file = File(path);*/
     final bytes = await _pdfService.clientReport(
       list,
       initialDate: initialRegistrationDate,
       finalDate: finalRegistrationDate,
     );
-    file.writeAsBytesSync(bytes);
+    //file.writeAsBytesSync(bytes);
     return bytes;
   }
 

@@ -113,19 +113,19 @@ mixin _$AddEditClientsController on AddEditClientsControllerBase, Store {
     });
   }
 
-  late final _$contactAtom =
-      Atom(name: 'AddEditClientsControllerBase.contact', context: context);
+  late final _$businessPhoneAtom = Atom(
+      name: 'AddEditClientsControllerBase.businessPhone', context: context);
 
   @override
-  String? get contact {
-    _$contactAtom.reportRead();
-    return super.contact;
+  String? get businessPhone {
+    _$businessPhoneAtom.reportRead();
+    return super.businessPhone;
   }
 
   @override
-  set contact(String? value) {
-    _$contactAtom.reportWrite(value, super.contact, () {
-      super.contact = value;
+  set businessPhone(String? value) {
+    _$businessPhoneAtom.reportWrite(value, super.businessPhone, () {
+      super.businessPhone = value;
     });
   }
 
@@ -160,7 +160,7 @@ company: ${company},
 name: ${name},
 email: ${email},
 phone: ${phone},
-contact: ${contact},
+businessPhone: ${businessPhone},
 isFormValid: ${isFormValid}
     ''';
   }

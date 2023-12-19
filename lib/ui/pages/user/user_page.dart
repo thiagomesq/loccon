@@ -60,18 +60,21 @@ class UserPage extends StatelessWidget {
                               const SizedBox(height: 16),
                               Row(
                                 children: [
-                                  ...UserType.values.asMap().entries.map(
+                                  ...UserType.values.map(
                                     (e) {
                                       return Expanded(
                                         child: Observer(
                                           builder: (_) {
-                                            final value = e.value;
                                             return RadioListTile<UserType>(
-                                              title: Text(value.label),
-                                              value: value,
+                                              title: Text(e.label),
+                                              value: e,
                                               groupValue: controller.type,
                                               onChanged: (userType) =>
                                                   controller.type = userType,
+                                              contentPadding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 8,
+                                              ),
                                             );
                                           },
                                         ),

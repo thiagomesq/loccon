@@ -29,6 +29,11 @@ class AddEditClientPage extends StatelessWidget {
           filter: {"#": RegExp(r'[0-9]')},
           initialText: controller.phone,
         );
+        final businessPhoneMask = MaskTextInputFormatter(
+          mask: '(###) ###-##-##',
+          filter: {"#": RegExp(r'[0-9]')},
+          initialText: controller.businessPhone,
+        );
         return Scaffold(
           appBar: const LCAppBar(),
           body: Container(
@@ -113,9 +118,14 @@ class AddEditClientPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             LCTextField(
-                              labelText: 'Contact',
-                              initialValue: controller.contact,
-                              onChanged: (value) => controller.contact = value,
+                              labelText: 'Business Phone',
+                              keyboardType: TextInputType.phone,
+                              initialValue: controller.businessPhone,
+                              onChanged: (value) => controller.businessPhone =
+                                  businessPhoneMask.getMaskedText(),
+                              inputFormatters: [
+                                businessPhoneMask,
+                              ],
                             ),
                             const SizedBox(height: 16),
                             Observer(

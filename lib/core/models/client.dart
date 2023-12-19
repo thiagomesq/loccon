@@ -10,7 +10,7 @@ class Client {
   String? name;
   String? email;
   String? phone;
-  String? contact;
+  String? businessPhone;
   DateTime? createdAt;
 
   Client({
@@ -18,7 +18,7 @@ class Client {
     this.name,
     this.email,
     this.phone,
-    this.contact,
+    this.businessPhone,
   }) {
     createdAt = DateTime.now();
     id = id ?? const Uuid().v4();

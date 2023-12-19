@@ -37,7 +37,7 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
   String? phone;
 
   @observable
-  String? contact;
+  String? businessPhone;
 
   @computed
   bool get isFormValid {
@@ -71,7 +71,7 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
       }
       email = client!.email;
       phone = client!.phone;
-      contact = client!.contact;
+      businessPhone = client!.businessPhone;
     }
   }
 
@@ -83,14 +83,14 @@ abstract class AddEditClientsControllerBase extends ControllerBase with Store {
           company: company,
           email: email,
           phone: phone,
-          contact: contact,
+          businessPhone: businessPhone,
         );
       } else {
         client = Client(
           name: name,
           email: email,
           phone: phone,
-          contact: contact,
+          businessPhone: businessPhone,
         );
       }
     }
