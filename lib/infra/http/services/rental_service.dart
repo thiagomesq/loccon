@@ -142,7 +142,7 @@ class RentalService {
     return rentalReport;
   }
 
-  Future<List<RentalReport>> getDailyRetrievalReport(
+  Future<List<RentalReport>> getDailyPickUpReport(
     String date,
   ) async {
     final list = await _firestoreService.getDataByFilters(
@@ -170,7 +170,7 @@ class RentalService {
     return dailyRentalReport;
   }
 
-  Future<List<RentalReport>> getRetrievalReport(
+  Future<List<RentalReport>> getPickUpReport(
     String initialDate,
     String finalDate,
   ) async {

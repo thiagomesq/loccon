@@ -20,7 +20,7 @@ class PickUpReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ControllerScope(
-      create: (_) => DiaryRetrievalController(
+      create: (_) => PickUpController(
         GetIt.I(),
         GetIt.I(),
         GetIt.I(),
@@ -75,12 +75,11 @@ class PickUpReportPage extends StatelessWidget {
                                       return LCTextField(
                                         controller: TextEditingController(),
                                         initialValue:
-                                            controller.initialRetrievalDate,
+                                            controller.initialPickUpDate,
                                         labelText: 'Pick up Date *',
                                         isDatePicker: true,
                                         onChanged: (value) {
-                                          controller.initialRetrievalDate =
-                                              value;
+                                          controller.initialPickUpDate = value;
                                         },
                                       );
                                     },
@@ -94,13 +93,12 @@ class PickUpReportPage extends StatelessWidget {
                                                 controller:
                                                     TextEditingController(),
                                                 initialValue: controller
-                                                    .initialRetrievalDate,
+                                                    .initialPickUpDate,
                                                 labelText:
                                                     'Initial Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller
-                                                          .initialRetrievalDate =
+                                                  controller.initialPickUpDate =
                                                       value;
                                                   DateTime date =
                                                       DateFormat('MM-dd-yyyy')
@@ -124,8 +122,7 @@ class PickUpReportPage extends StatelessWidget {
                                                     default:
                                                       break;
                                                   }
-                                                  controller
-                                                          .finalRetrievalDate =
+                                                  controller.finalPickUpDate =
                                                       DateFormat('MM-dd-yyyy')
                                                           .format(date);
                                                 },
@@ -135,10 +132,10 @@ class PickUpReportPage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           Observer(
                                             builder: (_) {
-                                              DateTime date = DateFormat(
-                                                      'MM-dd-yyyy')
-                                                  .parse(controller
-                                                      .initialRetrievalDate);
+                                              DateTime date =
+                                                  DateFormat('MM-dd-yyyy')
+                                                      .parse(controller
+                                                          .initialPickUpDate);
                                               switch (controller.period) {
                                                 case 'Weekly':
                                                   date = date.add(
@@ -156,20 +153,19 @@ class PickUpReportPage extends StatelessWidget {
                                                 default:
                                                   break;
                                               }
-                                              controller.finalRetrievalDate =
+                                              controller.finalPickUpDate =
                                                   DateFormat('MM-dd-yyyy')
                                                       .format(date);
                                               return LCTextField(
                                                 controller:
                                                     TextEditingController(),
-                                                initialValue: controller
-                                                    .finalRetrievalDate,
+                                                initialValue:
+                                                    controller.finalPickUpDate,
                                                 labelText:
                                                     'Final Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller
-                                                          .finalRetrievalDate =
+                                                  controller.finalPickUpDate =
                                                       value;
                                                 },
                                                 isEnable: false,
@@ -186,13 +182,12 @@ class PickUpReportPage extends StatelessWidget {
                                                 controller:
                                                     TextEditingController(),
                                                 initialValue: controller
-                                                    .initialRetrievalDate,
+                                                    .initialPickUpDate,
                                                 labelText:
                                                     'Initial Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller
-                                                          .initialRetrievalDate =
+                                                  controller.initialPickUpDate =
                                                       value;
                                                 },
                                               );
@@ -204,14 +199,13 @@ class PickUpReportPage extends StatelessWidget {
                                               return LCTextField(
                                                 controller:
                                                     TextEditingController(),
-                                                initialValue: controller
-                                                    .finalRetrievalDate,
+                                                initialValue:
+                                                    controller.finalPickUpDate,
                                                 labelText:
                                                     'Final Pick up Date *',
                                                 isDatePicker: true,
                                                 onChanged: (value) {
-                                                  controller
-                                                          .finalRetrievalDate =
+                                                  controller.finalPickUpDate =
                                                       value;
                                                 },
                                               );
@@ -230,7 +224,7 @@ class PickUpReportPage extends StatelessWidget {
                         Expanded(
                           child: LCFutureButton<dynamic>(
                             futureBuilder: (_) =>
-                                controller.retrievalReport(ReportType.pdf),
+                                controller.pickUpReport(ReportType.pdf),
                             onOk: (_, bytes) async {
                               await Navigator.of(context).pushNamed(
                                 PdfViewerPage.routeName,

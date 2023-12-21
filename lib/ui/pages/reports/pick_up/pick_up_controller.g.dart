@@ -8,9 +8,9 @@ part of 'pick_up_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
+mixin _$PickUpController on PickUpControllerBase, Store {
   late final _$periodsAtom =
-      Atom(name: 'DiaryRetrievalControllerBase.periods', context: context);
+      Atom(name: 'PickUpControllerBase.periods', context: context);
 
   @override
   List<String> get periods {
@@ -26,7 +26,7 @@ mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
   }
 
   late final _$periodAtom =
-      Atom(name: 'DiaryRetrievalControllerBase.period', context: context);
+      Atom(name: 'PickUpControllerBase.period', context: context);
 
   @override
   String get period {
@@ -41,69 +41,62 @@ mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
     });
   }
 
-  late final _$initialRetrievalDateAtom = Atom(
-      name: 'DiaryRetrievalControllerBase.initialRetrievalDate',
-      context: context);
+  late final _$initialPickUpDateAtom =
+      Atom(name: 'PickUpControllerBase.initialPickUpDate', context: context);
 
   @override
-  String get initialRetrievalDate {
-    _$initialRetrievalDateAtom.reportRead();
-    return super.initialRetrievalDate;
+  String get initialPickUpDate {
+    _$initialPickUpDateAtom.reportRead();
+    return super.initialPickUpDate;
   }
 
   @override
-  set initialRetrievalDate(String value) {
-    _$initialRetrievalDateAtom.reportWrite(value, super.initialRetrievalDate,
-        () {
-      super.initialRetrievalDate = value;
+  set initialPickUpDate(String value) {
+    _$initialPickUpDateAtom.reportWrite(value, super.initialPickUpDate, () {
+      super.initialPickUpDate = value;
     });
   }
 
-  late final _$finalRetrievalDateAtom = Atom(
-      name: 'DiaryRetrievalControllerBase.finalRetrievalDate',
-      context: context);
+  late final _$finalPickUpDateAtom =
+      Atom(name: 'PickUpControllerBase.finalPickUpDate', context: context);
 
   @override
-  String get finalRetrievalDate {
-    _$finalRetrievalDateAtom.reportRead();
-    return super.finalRetrievalDate;
+  String get finalPickUpDate {
+    _$finalPickUpDateAtom.reportRead();
+    return super.finalPickUpDate;
   }
 
   @override
-  set finalRetrievalDate(String value) {
-    _$finalRetrievalDateAtom.reportWrite(value, super.finalRetrievalDate, () {
-      super.finalRetrievalDate = value;
+  set finalPickUpDate(String value) {
+    _$finalPickUpDateAtom.reportWrite(value, super.finalPickUpDate, () {
+      super.finalPickUpDate = value;
     });
   }
 
-  late final _$retrievalReportAsyncAction = AsyncAction(
-      'DiaryRetrievalControllerBase.retrievalReport',
-      context: context);
+  late final _$pickUpReportAsyncAction =
+      AsyncAction('PickUpControllerBase.pickUpReport', context: context);
 
   @override
-  Future<List<int>> retrievalReport(ReportType reportType) {
-    return _$retrievalReportAsyncAction
-        .run(() => super.retrievalReport(reportType));
+  Future<List<int>> pickUpReport(ReportType reportType) {
+    return _$pickUpReportAsyncAction.run(() => super.pickUpReport(reportType));
   }
 
-  late final _$_retrievalReportPDFAsyncAction = AsyncAction(
-      'DiaryRetrievalControllerBase._retrievalReportPDF',
-      context: context);
+  late final _$_pickUpReportPDFAsyncAction =
+      AsyncAction('PickUpControllerBase._pickUpReportPDF', context: context);
 
   @override
-  Future<List<int>> _retrievalReportPDF(List<RentalReport> list) {
-    return _$_retrievalReportPDFAsyncAction
-        .run(() => super._retrievalReportPDF(list));
+  Future<List<int>> _pickUpReportPDF(List<RentalReport> list) {
+    return _$_pickUpReportPDFAsyncAction
+        .run(() => super._pickUpReportPDF(list));
   }
 
-  late final _$_retrievalReportExcelAsyncAction = AsyncAction(
-      'DiaryRetrievalControllerBase._retrievalReportExcel',
-      context: context);
+  late final _$_pickUpReportExcelAsyncAction =
+      AsyncAction('PickUpControllerBase._pickUpReportExcel', context: context);
 
   @override
-  Future<List<int>> _retrievalReportExcel(List<RentalReport> list) {
-    return _$_retrievalReportExcelAsyncAction
-        .run(() => super._retrievalReportExcel(list));
+  Future<List<int>> _pickUpReportExcel(List<RentalReport> list) {
+    return _$_pickUpReportExcelAsyncAction
+        .run(() => super._pickUpReportExcel(list));
   }
 
   @override
@@ -111,8 +104,8 @@ mixin _$DiaryRetrievalController on DiaryRetrievalControllerBase, Store {
     return '''
 periods: ${periods},
 period: ${period},
-initialRetrievalDate: ${initialRetrievalDate},
-finalRetrievalDate: ${finalRetrievalDate}
+initialPickUpDate: ${initialPickUpDate},
+finalPickUpDate: ${finalPickUpDate}
     ''';
   }
 }
