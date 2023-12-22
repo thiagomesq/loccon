@@ -250,7 +250,8 @@ class DumpsterUtilizationPage extends StatelessWidget {
                                                         .toLowerCase()
                                                         .contains(pattern
                                                             .toLowerCase()))
-                                                .map((client) => client);
+                                                .map((client) => client)
+                                                .toList();
                                           },
                                         );
                                       },

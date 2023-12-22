@@ -83,7 +83,8 @@ class CustomerHistoryPage extends StatelessWidget {
                                           .where((client) => client.name!
                                               .toLowerCase()
                                               .contains(pattern.toLowerCase()))
-                                          .map((client) => client);
+                                          .map((client) => client)
+                                          .toList();
                                     },
                                   );
                                 },

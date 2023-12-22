@@ -9,7 +9,7 @@ class LCTypeAheadField<T> extends StatefulWidget {
   final String? initialValue;
   final void Function(T) onSuggestionSelected;
   final Widget Function(BuildContext, T) itemBuilder;
-  final FutureOr<Iterable<T>> Function(String) suggestionsCallback;
+  final FutureOr<List<T>> Function(String) suggestionsCallback;
   const LCTypeAheadField({
     Key? key,
     this.labelText,
@@ -28,37 +28,42 @@ class _LCTypeAheadFieldState<T> extends State<LCTypeAheadField<T>> {
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController(text: widget.initialValue);
-    return TypeAheadFormField<T>(
-      textFieldConfiguration: TextFieldConfiguration(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: widget.labelText,
-          filled: true,
-          fillColor: Theme.of(context).colorScheme.background,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
+
+    return TypeAheadField<T>(
+      controller: controller,
+      builder: (context, controller, focusNode) {
+        return TextField(
+          controller: controller,
+          focusNode: focusNode,
+          decoration: InputDecoration(
+            labelText: widget.labelText,
+            filled: true,
+            fillColor: Theme.of(context).colorScheme.background,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(30),
+              ),
             ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(30),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(30),
+              ),
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 15,
             ),
           ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(30),
-            ),
-          ),
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 15,
-          ),
-        ),
-        onChanged: widget.onChanged,
-      ),
-      onSuggestionSelected: widget.onSuggestionSelected,
+          onChanged: widget.onChanged,
+        );
+      },
+      onSelected: widget.onSuggestionSelected,
       itemBuilder: widget.itemBuilder,
       suggestionsCallback: widget.suggestionsCallback,
     );
