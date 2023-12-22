@@ -1,3 +1,4 @@
+import 'package:dumpin/ui/pages/reports/customer_history/customer_history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dumpin/ui/pages/reports/client/client_page.dart';
 import 'package:dumpin/ui/pages/reports/dumpster_utilization/dumpster_utilization_page.dart';
@@ -45,6 +46,10 @@ class ReportsPage extends StatelessWidget {
                 ReportButton(
                   route: DumpsterUtilizationPage.routeName,
                   text: 'Dumpster Utilization Report',
+                ),
+                ReportButton(
+                  route: CustomerHistoryPage.routeName,
+                  text: 'Customer History Report',
                 ),
               ],
             ),

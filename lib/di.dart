@@ -19,6 +19,7 @@ final i = GetIt.I;
 
 Future<void> configureDI() async {
   i.registerSingletonAsync<FirebaseService>(() => FirebaseService.init());
+
   i.registerLazySingleton(() => FirestoreService());
   //i.registerSingletonAsync<Env>(() => Env.init());
   i.registerLazySingleton(() => AuthService());
@@ -30,6 +31,7 @@ Future<void> configureDI() async {
   i.registerLazySingleton<DumpsterStore>(() => DumpsterStore());
   i.registerLazySingleton<RentalStore>(() => RentalStore());
   i.registerLazySingleton<PricesStore>(() => PricesStore());
+
   /*i.registerFactory(() => AuthInterceptor(i.get()));
   i.registerLazySingleton<QRCodeService>(() => QRCodeService());
   i.registerLazySingleton(() => PreferenceService(i.get()));

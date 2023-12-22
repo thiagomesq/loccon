@@ -59,18 +59,17 @@ class AddEditClientPage extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ...ClientType.values.asMap().entries.map(
+                                ...ClientType.values.map(
                                   (e) {
                                     return Expanded(
                                       child: Observer(
                                         builder: (_) {
-                                          final value = e.value;
                                           return RadioListTile<ClientType>(
                                             contentPadding: EdgeInsets.zero,
                                             title: Text(
-                                              value.label,
+                                              e.label,
                                             ),
-                                            value: value,
+                                            value: e,
                                             groupValue: controller.type,
                                             onChanged: (clientType) =>
                                                 controller.type = clientType,

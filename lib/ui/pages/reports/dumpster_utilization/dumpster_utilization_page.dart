@@ -268,6 +268,7 @@ class DumpsterUtilizationPage extends StatelessWidget {
                             child: LCFutureButton<dynamic>(
                               futureBuilder: (_) => controller
                                   .dumpsterUtilizationReport(ReportType.pdf),
+                              isValid: controller.isFormValid,
                               onOk: (_, bytes) async {
                                 await Navigator.of(context).pushNamed(
                                   PdfViewerPage.routeName,

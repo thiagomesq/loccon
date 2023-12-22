@@ -2,6 +2,7 @@ import 'package:dumpin/ui/pages/clients/add_edit/add_edit_page.dart';
 import 'package:dumpin/ui/pages/dumpsters/add_edit/add_edit_page.dart';
 import 'package:dumpin/ui/pages/home/home_page.dart';
 import 'package:dumpin/ui/pages/login/login_page.dart';
+import 'package:dumpin/ui/pages/reports/customer_history/customer_history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dumpin/ui/pages/rental/add_edit/add_edit_page.dart';
 import 'package:dumpin/ui/pages/rental/part/dumpster_rental_info_page.dart';
@@ -27,4 +28,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   ClientReportPage.routeName: (_) => const ClientReportPage(),
   PdfViewerPage.routeName: (_) => const PdfViewerPage(),
   DumpsterUtilizationPage.routeName: (_) => const DumpsterUtilizationPage(),
+  CustomerHistoryPage.routeName: (_) => const CustomerHistoryPage(),
 };

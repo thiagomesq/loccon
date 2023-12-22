@@ -475,6 +475,115 @@ class PDFService {
     return bytes;
   }
 
+  //customerHistoryReport
+  Future<List<int>> customerHistoryReport(
+    List<RentalReport> list, {
+    String? initialDate,
+    String? finalDate,
+  }) async {
+    final PdfDocument document = PdfDocument();
+
+    document.pageSettings.orientation = PdfPageOrientation.landscape;
+
+    document.template.top = await header();
+
+    final titlePosition = Rect.fromLTWH(0, 20, document.pageSettings.width, 35);
+    final titleTotalHeight = titlePosition.height + titlePosition.top;
+
+    PdfPage page = document.pages.add();
+
+    page.graphics.drawString(
+      'Customer History Report',
+      PdfStandardFont(PdfFontFamily.helvetica, 30),
+      bounds: titlePosition,
+      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      format: PdfStringFormat(alignment: PdfTextAlignment.center),
+    );
+
+    if (list.isNotEmpty) {
+      page.graphics.drawString(
+        'Customer: ${list[0].client.name}',
+        PdfStandardFont(PdfFontFamily.helvetica, 14, style: PdfFontStyle.bold),
+        bounds: Rect.fromLTWH(0, titleTotalHeight + 15, 515, 17),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      );
+      if (initialDate != null && finalDate != null) {
+        page.graphics.drawString(
+          'Period: $initialDate - $finalDate',
+          PdfStandardFont(PdfFontFamily.helvetica, 14,
+              style: PdfFontStyle.bold),
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 35, 515, 17),
+          brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        );
+      }
+
+      PdfGrid grid = PdfGrid();
+
+      grid.style = PdfGridStyle(
+        font: PdfStandardFont(PdfFontFamily.helvetica, 12),
+        cellPadding: PdfPaddings(left: 5, right: 5, top: 5, bottom: 5),
+      );
+
+      grid.columns.add(count: 3);
+
+      grid.headers.add(1);
+
+      final headerFontStyle = PdfStandardFont(
+        PdfFontFamily.helvetica,
+        12,
+        style: PdfFontStyle.bold,
+      );
+
+      PdfGridRow header = grid.headers[0];
+      header.cells[0].value = 'Dumpster #';
+      header.cells[0].style.font = headerFontStyle;
+      header.cells[1].value = 'Size';
+      header.cells[1].style.font = headerFontStyle;
+      header.cells[2].value = 'Status';
+      header.cells[2].style.font = headerFontStyle;
+
+      for (var item in list) {
+        PdfGridRow row = grid.rows.add();
+        row.cells[0].value = item.dumpster.code;
+        row.cells[1].value = '${item.dumpster.size}Y';
+        final isRented = item.dumpster.isRented;
+        row.cells[2].value = isRented ? 'In Use' : 'Out';
+        row.cells[2].style.textBrush = isRented
+            ? PdfSolidBrush(PdfColor(0, 255, 0))
+            : PdfSolidBrush(PdfColor(255, 0, 0));
+      }
+
+      if (initialDate != null && finalDate != null) {
+        grid.draw(
+          page: page,
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 55, 0, 0),
+        );
+      } else {
+        grid.draw(
+          page: page,
+          bounds: Rect.fromLTWH(0, titleTotalHeight + 35, 0, 0),
+        );
+      }
+    } else {
+      page.graphics.drawString(
+        'No data found',
+        PdfStandardFont(PdfFontFamily.helvetica, 22, style: PdfFontStyle.bold),
+        bounds: Rect.fromLTWH(
+          0,
+          titleTotalHeight + 30,
+          document.pageSettings.width,
+          30,
+        ),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        format: PdfStringFormat(alignment: PdfTextAlignment.center),
+      );
+    }
+
+    List<int> bytes = await document.save();
+    document.dispose();
+    return bytes;
+  }
+
   //header
   Future<PdfPageTemplateElement> header() async {
     final PdfPageTemplateElement headerTemplate =
