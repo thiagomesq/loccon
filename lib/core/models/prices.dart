@@ -5,11 +5,11 @@ part 'prices.g.dart';
 @JsonSerializable()
 class Prices {
   String? id;
-  double? weeklyPrice;
+  Map<String, double>? initialRentalPrice;
   double? additionalPricePerDay;
 
   Prices({
-    this.weeklyPrice,
+    this.initialRentalPrice,
     this.additionalPricePerDay,
   });
 

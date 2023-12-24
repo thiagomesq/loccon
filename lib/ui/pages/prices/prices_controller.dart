@@ -20,26 +20,36 @@ abstract class PricesControllerBase extends ControllerBase with Store {
   }
 
   @observable
-  double? weeklyPrice;
+  Map<String, double>? initialRentalPrice;
 
   @observable
   double? additionalPricePerDay;
+
+  @observable
+  List<String>? sizes;
+
+  @observable
+  String? size;
 
   @computed
   Prices get prices => _pricesStore.prices!;
 
   @computed
-  bool get isFormValid => weeklyPrice != null && additionalPricePerDay != null;
+  bool get isFormValid =>
+      initialRentalPrice != null && additionalPricePerDay != null;
 
   @action
   void fetch() {
-    weeklyPrice = prices.weeklyPrice;
+    initialRentalPrice = prices.initialRentalPrice;
+    sizes = initialRentalPrice!.keys.toList();
+    sizes!.sort((a, b) => a.compareTo(b));
+    size = sizes!.first;
     additionalPricePerDay = prices.additionalPricePerDay;
   }
 
   @action
   Future<void> save() async {
-    prices.weeklyPrice = weeklyPrice;
+    prices.initialRentalPrice = initialRentalPrice;
     prices.additionalPricePerDay = additionalPricePerDay;
     await _pricesService.savePrices(prices);
     _pricesStore.setPrices(prices);

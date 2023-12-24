@@ -7,13 +7,16 @@ part of 'prices.dart';
 // **************************************************************************
 
 Prices _$PricesFromJson(Map<String, dynamic> json) => Prices(
-      weeklyPrice: (json['weeklyPrice'] as num?)?.toDouble(),
+      initialRentalPrice:
+          (json['initialRentalPrice'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toDouble()),
+      ),
       additionalPricePerDay:
           (json['additionalPricePerDay'] as num?)?.toDouble(),
     )..id = json['id'] as String?;
 
 Map<String, dynamic> _$PricesToJson(Prices instance) => <String, dynamic>{
       'id': instance.id,
-      'weeklyPrice': instance.weeklyPrice,
+      'initialRentalPrice': instance.initialRentalPrice,
       'additionalPricePerDay': instance.additionalPricePerDay,
     };

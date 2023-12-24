@@ -90,9 +90,9 @@ abstract class DumpsterRentalInfoControllerBase extends ControllerBase
     final retrievalDate = DateFormat('MM-dd-yyyy').parse(rental!.pickUpDate!);
     final difference = retrievalDate.difference(rentalDate).inDays;
     if (difference <= 7) {
-      rental!.price = prices.weeklyPrice;
+      rental!.price = prices.initialRentalPrice!['${dumpster.size}Y'];
     } else {
-      final price = prices.weeklyPrice! +
+      final price = prices.initialRentalPrice!['${dumpster.size}Y']! +
           (prices.additionalPricePerDay! * (difference - 7));
       rental!.price = price;
     }

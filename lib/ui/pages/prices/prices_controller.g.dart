@@ -24,19 +24,19 @@ mixin _$PricesController on PricesControllerBase, Store {
               name: 'PricesControllerBase.isFormValid'))
           .value;
 
-  late final _$weeklyPriceAtom =
-      Atom(name: 'PricesControllerBase.weeklyPrice', context: context);
+  late final _$initialRentalPriceAtom =
+      Atom(name: 'PricesControllerBase.initialRentalPrice', context: context);
 
   @override
-  double? get weeklyPrice {
-    _$weeklyPriceAtom.reportRead();
-    return super.weeklyPrice;
+  Map<String, double>? get initialRentalPrice {
+    _$initialRentalPriceAtom.reportRead();
+    return super.initialRentalPrice;
   }
 
   @override
-  set weeklyPrice(double? value) {
-    _$weeklyPriceAtom.reportWrite(value, super.weeklyPrice, () {
-      super.weeklyPrice = value;
+  set initialRentalPrice(Map<String, double>? value) {
+    _$initialRentalPriceAtom.reportWrite(value, super.initialRentalPrice, () {
+      super.initialRentalPrice = value;
     });
   }
 
@@ -54,6 +54,38 @@ mixin _$PricesController on PricesControllerBase, Store {
     _$additionalPricePerDayAtom.reportWrite(value, super.additionalPricePerDay,
         () {
       super.additionalPricePerDay = value;
+    });
+  }
+
+  late final _$sizesAtom =
+      Atom(name: 'PricesControllerBase.sizes', context: context);
+
+  @override
+  List<String>? get sizes {
+    _$sizesAtom.reportRead();
+    return super.sizes;
+  }
+
+  @override
+  set sizes(List<String>? value) {
+    _$sizesAtom.reportWrite(value, super.sizes, () {
+      super.sizes = value;
+    });
+  }
+
+  late final _$sizeAtom =
+      Atom(name: 'PricesControllerBase.size', context: context);
+
+  @override
+  String? get size {
+    _$sizeAtom.reportRead();
+    return super.size;
+  }
+
+  @override
+  set size(String? value) {
+    _$sizeAtom.reportWrite(value, super.size, () {
+      super.size = value;
     });
   }
 
@@ -82,8 +114,10 @@ mixin _$PricesController on PricesControllerBase, Store {
   @override
   String toString() {
     return '''
-weeklyPrice: ${weeklyPrice},
+initialRentalPrice: ${initialRentalPrice},
 additionalPricePerDay: ${additionalPricePerDay},
+sizes: ${sizes},
+size: ${size},
 prices: ${prices},
 isFormValid: ${isFormValid}
     ''';
