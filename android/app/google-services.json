@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "318126077828",
+    "project_id": "dumpin-c2811",
+    "storage_bucket": "dumpin-c2811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318126077828:android:82cb82767e38736eabcfd1",
+        "android_client_info": {
+          "package_name": "com.example.loccon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318126077828-bjuc2o8g1mgc6vncbajjd8gmtdr38dee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loccon",
+            "certificate_hash": "647d5cdcb82b48b7a6351fc6a14e8428ac3017d1"
+          }
+        },
+        {
+          "client_id": "318126077828-1iqveuuvd773s8a2pt1a0p7p3oh7f1j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqOr6KrsX1zr60tddX3ppucuhQbZdNNvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318126077828-1iqveuuvd773s8a2pt1a0p7p3oh7f1j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

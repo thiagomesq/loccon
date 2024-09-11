@@ -6,20 +6,13 @@ version: 0.2.0+2
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
-
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   intl: any
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.2
   get_it: ^7.6.0
